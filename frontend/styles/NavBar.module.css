@@ -16,11 +16,20 @@
     justify-items: center;
 }
 .li_icon{
-    padding-left: 32px;
-    justify-self: baseline;
+
+    /* justify-self: baseline; */
+}
+.li_user_name{
+    font-size: 20px;
+}
+.li_user_img{
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #000;
 }
 .icon{
-    width: 80px;
+    width: 100px;
     margin: 5px;
 }
 .li_search_input{
@@ -28,16 +37,19 @@
     border: none;
     outline: none;
     border-radius: 10px 0 0 10px;
+    padding-left: 10px;
+    font-size: 20px;
+    
 }
 .li_search_img{
-    padding: 4px;
+    padding: 6px;
     background: rgb(211, 211, 211);
     border-radius: 0 10px 10px 0;
 }
 .li_search{
     display: flex;
     width: 80%;
-    height: 32px;
+    height: 40px;
     background: #fff;
     box-shadow: 0 0 5px #000;
     border-radius: 10px;
