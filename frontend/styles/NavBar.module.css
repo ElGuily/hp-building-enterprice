@@ -1,13 +1,15 @@
 .navbar{
-    
-    background: #eee;
+    background: #0000002f;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    height: 10vh;
     box-shadow: 0 0 5px #000;
+    z-index: 2;
 }
 .ul{
+    height: 10vh;
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -16,8 +18,12 @@
     justify-items: center;
 }
 .li_icon{
-
-    /* justify-self: baseline; */
+    justify-self: center;
+}
+.icon{
+    height: 10vh;
+    padding: 5px;
+    filter: drop-shadow(0 0 5px rgb(0, 247, 255));
 }
 .li_user_name{
     font-size: 20px;
@@ -25,12 +31,8 @@
 .li_user_img{
     width: 64px;
     height: 64px;
-    border-radius: 10px;
+    border-radius: 50%;
     box-shadow: 0 0 5px #000;
-}
-.icon{
-    width: 100px;
-    margin: 5px;
 }
 .li_search_input{
     width: 100%;
@@ -42,6 +44,11 @@
     
 }
 .li_search_img{
+    height: 100%;
+}
+.li_search_button{
+    border: none;
+    outline: none;
     padding: 6px;
     background: rgb(211, 211, 211);
     border-radius: 0 10px 10px 0;
@@ -49,8 +56,23 @@
 .li_search{
     display: flex;
     width: 80%;
-    height: 40px;
+    height: 45px;
     background: #fff;
     box-shadow: 0 0 5px #000;
     border-radius: 10px;
+}
+.li_profile{
+    min-width: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+@media (max-width:500px) {
+    .li_user_name{
+        display: none;
+    }
+    .li_profile{
+        min-width: 64px !important;
+
+    }
 }

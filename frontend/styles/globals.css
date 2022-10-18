@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
 
+
+:root{
+    --color: #53BCFE;
+}
 *{
     margin: 0;
     padding: 0;
