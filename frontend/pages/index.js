@@ -4,9 +4,11 @@ import styles from "../styles/Home.module.css";
 
 import NavBar from "../components/NavBar";
 
+import PcCardType from "../components/PcCardType";
+
 export default function Home() {
   return (
-    <div>
+    <div className={styles.mainbox}>
       <Head>
         <title>HP Building Enterprise</title>
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
@@ -29,7 +31,13 @@ export default function Home() {
         </svg>
       </div>
       <div className={styles.postLanding}>
+        <h3 className={styles.postLanding__h3}>Busca el computador de tus sueños</h3>
+        <div className={styles.postLanding__cajas}>
+          <PcCardType img="/oficina.png" type="Oficina"></PcCardType>
+          <PcCardType img="/gamer.png" type="Gamer"></PcCardType>
+          <PcCardType img="/diseno.png" type="Diseño"></PcCardType>
 
+        </div>
       </div>
     </main>
     </div>

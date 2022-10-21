@@ -1,5 +1,5 @@
 .navbar{
-    background: #0000002f;
+    background: #00000038;
     position: fixed;
     top: 0;
     left: 0;
@@ -27,12 +27,15 @@
 }
 .li_user_name{
     font-size: 20px;
+    color: #fff;
+    text-shadow: 0 0 5px #000;
 }
 .li_user_img{
     width: 64px;
     height: 64px;
     border-radius: 50%;
     box-shadow: 0 0 5px #000;
+    cursor: pointer;
 }
 .li_search_input{
     width: 100%;
