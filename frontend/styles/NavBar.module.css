@@ -1,5 +1,6 @@
 .navbar{
     background: #00000038;
+    backdrop-filter: blur(4px);
     position: fixed;
     top: 0;
     left: 0;
@@ -19,6 +20,7 @@
 }
 .li_icon{
     justify-self: center;
+    cursor: pointer;
 }
 .icon{
     height: 10vh;

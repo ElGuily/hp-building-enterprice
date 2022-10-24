@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 import NavBar from "../components/NavBar";
 
@@ -33,9 +33,9 @@ export default function Home() {
       <div className={styles.postLanding}>
         <h3 className={styles.postLanding__h3}>Busca el computador de tus sueños</h3>
         <div className={styles.postLanding__cajas}>
-          <PcCardType img="/oficina.png" type="Oficina"></PcCardType>
-          <PcCardType img="/gamer.png" type="Gamer"></PcCardType>
-          <PcCardType img="/diseno.png" type="Diseño"></PcCardType>
+          <PcCardType img="/oficina.png" type="Oficina" link="/Pcs?q=Oficina"></PcCardType>
+          <PcCardType img="/gamer.png" type="Gamer" link="/Pcs?q=Gamer"></PcCardType>
+          <PcCardType img="/diseño.png" type="Diseño" link="/Pcs?q=Diseño"></PcCardType>
 
         </div>
       </div>

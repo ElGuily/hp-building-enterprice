@@ -1,11 +1,15 @@
 import React from 'react'
+import Link from 'next/link'
 import styles from '../styles/NavBar.module.css'
 function NavBar() {
     return (
         <nav className={styles.navbar}>
             <ul className={styles.ul}>
                 <li className={styles.li_icon}>
-                    <img src="icon.png" alt="icon" className={styles.icon} />
+                    <Link href="/">
+                        <img src="icon.png" alt="icon" className={styles.icon} />
+
+                    </Link>
                 </li>
                 <li className={styles.li_search}>
                     <input type="text" className={styles.li_search_input} />
