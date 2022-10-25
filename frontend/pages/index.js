@@ -18,7 +18,7 @@ export default function Home() {
 
       <div className={styles.landing}>
         <div className={styles.main_div}>
-          <h1 className={styles.main_div_h1}>Hewlett-Packard</h1>
+          <h1 className={styles.main_div_h1}>Hewlett-Packets</h1>
           <h2 className={styles.main_div_h2}>Building Enterprise</h2>
         </div>
         <img src="computers.svg" alt="mainimg" className={styles.main_img} />

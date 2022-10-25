@@ -8,6 +8,13 @@
     gap: 20px;
     position: relative;
     box-shadow: 0 0 5px #0065a8;
+    max-width: 50rem;
+    min-width: 100%;
+}
+.pcCard:hover{
+    transition: .2s;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .pcCard__img {
