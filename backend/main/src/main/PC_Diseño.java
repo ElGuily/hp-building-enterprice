@@ -10,13 +10,18 @@ package main;
  */
 public class PC_Diseño extends PCs {
 
-    public PC_Diseño(int id_pc, double valor_pc) {
-        super(id_pc, valor_pc);
-        
+    
+    
+    
+    public PC_Diseño(int id_pc, Enum_modelos modelo, double valor_PC, int c_i) {
+        super(id_pc, modelo, valor_PC, c_i);
     }
     
     public double calcularPrecio(){
-        return 0;
+        if (this.valor_PC == 0){
+            this.valor_PC = 45000;
+        }
+        return this.valor_PC;
     }
     
     

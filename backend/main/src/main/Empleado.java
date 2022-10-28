@@ -38,7 +38,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Pedidos: "+pedido.toString()+"\nFacturado: "+facturado.toString();
+        return "Pedidos: "+pedido.toString()+"\nFacturado: "+facturado;
     }
     
     
