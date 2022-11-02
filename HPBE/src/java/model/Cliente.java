@@ -1,5 +1,5 @@
 
-package main;
+package model;
 
 public class Cliente extends Persona{
     private Direccion direccion;

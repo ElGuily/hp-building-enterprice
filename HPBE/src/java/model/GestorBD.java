@@ -38,6 +38,37 @@ public class GestorBD {
 //        }
 //        return true;
 //    }
+
+    public boolean registrarCliente(Cliente c){
+        try{
+            conn = ConectarBD.abrir();
+            stm = conn.createStatement();
+            String sql = "call registrarCliente('"+c.getUsuario()+"','"+c.getEmail()+"', '"+c.getPassw()+"', "+c.getNombre()+")";
+            JOptionPane.showMessageDialog(null, sql);
+            stm.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println("Error en la bd");
+            JOptionPane.showMessageDialog(null, e );
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     
+    public boolean registrarEmpleado(Cliente c){
+        try{
+            conn = ConectarBD.abrir();
+            stm = conn.createStatement();
+            String sql = "call registrarCliente('"+c.getUsuario()+"','"+c.getEmail()+"', '"+c.getPassw()+"', "+c.getNombre()+")";
+            JOptionPane.showMessageDialog(null, sql);
+            stm.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println("Error en la bd");
+            JOptionPane.showMessageDialog(null, e );
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
    
 }

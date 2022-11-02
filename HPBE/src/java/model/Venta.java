@@ -1,4 +1,4 @@
-package main;
+package model;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class Venta {
     private int id_venta;
     Cliente cliente;
     Empleado empleado;
-    ArrayList<PC> PCs;
+    ArrayList<PCs> PCs;
     
     public Venta(Cliente c, Empleado e){
         
@@ -30,8 +30,8 @@ public class Venta {
         factura +="Factura n° " + this.id_venta + "\n";
         factura +="----------------------------- \n";
         factura +="PCs compradas: \n";
-        for(PC pc: this.PCs){
-            factura += pc.toString;
+        for(PCs pc: this.PCs){
+            factura += pc.toString();
         }
         factura += "Total: " + calcularTotal() + "\n";
         factura += "----------------------------- \n";
@@ -40,7 +40,7 @@ public class Venta {
         return factura;
     }
     
-    public void añadirPC(PC pc){
+    public void añadirPC(PCs pc){
         
         this.PCs.add(pc);
         
@@ -55,7 +55,7 @@ public class Venta {
     public double calcularTotal(){
         double total = 0;
         
-        for(PC pc: this.PCs){
+        for(PCs pc: this.PCs){
             total += pc.calcularPrecio();
         }
         

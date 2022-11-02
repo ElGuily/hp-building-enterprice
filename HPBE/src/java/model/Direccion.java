@@ -1,5 +1,5 @@
 
-package main;
+package model;
 
 public class Direccion {
     private String calle;
