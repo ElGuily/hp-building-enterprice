@@ -3,7 +3,6 @@ package model;
 
 
 public class Persona {
-    private int id_persona;
     private String nombre;
     private String usuario;
     private String passw;
@@ -11,8 +10,8 @@ public class Persona {
     private String email;
     private boolean activo;
 
-    public Persona(int id_persona, String nombre, String usuario, String passw, int DNI, String email) {
-        this.id_persona = id_persona;
+    public Persona(String nombre, String usuario, String passw, int DNI, String email) {
+ 
         this.nombre = nombre;
         this.usuario = usuario;
         this.passw = passw;
@@ -26,13 +25,6 @@ public class Persona {
         
     }
 
-    public int getId_persona() {
-        return id_persona;
-    }
-
-    public void setId_persona(int id_persona) {
-        this.id_persona = id_persona;
-    }
 
     public String getNombre() {
         return nombre;
@@ -85,7 +77,7 @@ public class Persona {
     
     @Override
     public String toString() {
-        return id_persona + nombre + usuario + passw + DNI + email;
+        return  nombre + usuario + passw + DNI + email;
     }
     
     

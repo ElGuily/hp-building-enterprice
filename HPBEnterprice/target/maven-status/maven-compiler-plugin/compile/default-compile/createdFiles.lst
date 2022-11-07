@@ -1,3 +1,4 @@
+controller\registrarEmpleado.class
 model\Enum_modelos.class
 model\PC_Oficina.class
 model\Persona.class

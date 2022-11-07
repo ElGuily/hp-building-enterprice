@@ -30,6 +30,18 @@ public class login extends HttpServlet{
                 GestorBD gbd = new GestorBD();
                 
                 if(gbd.loginUsuario(username_login, password_login)==1){
+                    if(username_login.equals("admin") && password_login.equals("admin")){
+                        req.setAttribute("admin", true);
+                    }else{
+                        req.setAttribute("admin", false);
+                    }
+                    
+                    
+                    req.setAttribute("info", "logueado exitosamente");
+                    req.setAttribute("activo", true);
+                    req.getRequestDispatcher("/index.jsp").forward(req, res);
+                }else if(gbd.loginEmpleado(username_login, password_login)==1){
+                    req.setAttribute("empleado", true);
                     req.setAttribute("info", "logueado exitosamente");
                     req.setAttribute("activo", true);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
@@ -37,6 +49,7 @@ public class login extends HttpServlet{
                     req.setAttribute("info", "El nombre de usuario o la contraseña son incorrectas");
                     req.getRequestDispatcher("/login.jsp").forward(req, res);
                 }
+                
             }
         }
     

@@ -5,8 +5,8 @@ public class Cliente extends Persona{
     private Direccion direccion;
     private int cantidad_compras;
 
-    public Cliente(Direccion direccion, int cantidad_compras, int id_persona, String nombre, String usuario, String passw, int DNI, String email) {
-        super(id_persona, nombre, usuario, passw, DNI, email);
+    public Cliente(Direccion direccion, int cantidad_compras, String nombre, String usuario, String passw, int DNI, String email) {
+        super( nombre, usuario, passw, DNI, email);
         this.direccion = direccion;
         this.cantidad_compras = cantidad_compras;
     }

@@ -15,10 +15,14 @@ public class Empleado extends Persona {
     private ArrayList<Venta> pedido;
     private double facturado;
 
-    public Empleado(ArrayList<Venta> pedido, double facturado, int id_persona, String nombre, String usuario, String passw, int DNI, String email) {
-        super(id_persona, nombre, usuario, passw, DNI, email);
+    public Empleado(ArrayList<Venta> pedido, double facturado, String nombre, String usuario, String passw, int DNI, String email) {
+        super(nombre, usuario, passw, DNI, email);
         this.pedido = pedido;
         this.facturado = facturado;
+    }
+    
+    public Empleado(String nombre, String usuario, String passw, int DNI, String email){
+         super(nombre, usuario, passw, DNI, email);
     }
 
     public ArrayList<Venta> getPedido() {

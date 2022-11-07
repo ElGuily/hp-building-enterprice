@@ -27,9 +27,8 @@
             <c:when test="${activo}">
                 <li class="li_profile">
                     <form action="logout" method="POST">
-                        <input type="submit" value="Logout" />
-                    </form>
-                    
+                        <input type="submit" value="Logout" class="logout-button"/>
+                    </form>                   
                 </li>
             </c:when>
             <c:otherwise>
@@ -38,6 +37,21 @@
                     <a class="li_a" href="signup.jsp">SignUp</a>
                 </li>      
             </c:otherwise>
+        </c:choose>
+        <c:choose>
+            <c:when test="${admin}">
+                <li class="li_admin">
+                    <a class="li_admin" href="login.jsp">Ver estadisticas</a>         
+                    <a class="li_a" href="registrarEmpleado.jsp">SignUp</a>
+                </li>    
+                
+            </c:when>
+            <c:when test="${empleado}">
+                <li class="li_admin">
+                    <a class="li_admin" href="login.jsp">Ver mis estadiscas</a>         
+                </li>    
+                
+            </c:when>
         </c:choose>
        
         

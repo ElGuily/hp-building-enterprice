@@ -74,23 +74,46 @@ public class GestorBD {
         return valor;
     }
     
-    public boolean loginEmpleado(Empleado em){
+    public int loginEmpleado(String nombre, String passw){
+         ResultSet rs = null;
+         int valor = 0;
          try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call loginEmpleado('"+em.getUsuario()+"','"+em.getPassw()+"')";
-            JOptionPane.showMessageDialog(null, sql);
-            this.stm.executeUpdate(sql);
-            this.comandos.add(sql);
+            String sql = "select loginEmpleado('"+nombre+"','"+passw+"') as login";      
+            rs = stm.executeQuery(sql);
+            if(rs.next()){
+                valor = rs.getInt("login");
+                return valor;
+            }
+    
+            
+           
         }catch(SQLException e){
             System.out.println("Error en la bd");
             JOptionPane.showMessageDialog(null, e );
             e.printStackTrace();
-            return false;
+            
         }
          
-        return true;
+        return valor;
     }
+    
+    public void registrarEmpleado(Empleado e){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call registrarEmpleado('"+e.getUsuario()+"','"+e.getEmail()+"', '"+e.getPassw()+"', "+e.getDNI()+", '"+e.getNombre()+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
+    
+    
     
   
    

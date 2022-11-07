@@ -155,7 +155,7 @@ html{
   font-family: "Montserrat";
   color: #fff;
   text-shadow: 0 0 5px #fff;
-  
+  text-decoration: none; 
   filter: brightness(.7);
 }
 
@@ -252,6 +252,12 @@ html{
     font-size: 20px;
     color: #fff;
     text-shadow: 0 0 5px #000;
+}
+
+.li_admin{
+    font-size: 20px;
+    color: #000;
+   
 }
 
 
@@ -447,4 +453,17 @@ html{
     
     
        
+}
+
+.logout-button{
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor:pointer;
+    
+}
+
+.logout-button:hover{
+    color: gray;
 }

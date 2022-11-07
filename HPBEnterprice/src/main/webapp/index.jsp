@@ -22,7 +22,7 @@
                 <h1 class="main_div_h1">Hewlett-Packets</h1>
                 <h2 class="main_div_h2">Building Enterprise</h2>
               </div>
-              <img src="computers.svg" alt="mainimg" class="main_img" />
+              <img src="images/computers.svg" alt="mainimg" class="main_img" />
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="main_wave">
                 <path
                   fill="#0099ff"
