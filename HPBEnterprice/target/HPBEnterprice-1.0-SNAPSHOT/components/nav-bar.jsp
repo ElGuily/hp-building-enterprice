@@ -11,7 +11,7 @@
 <nav class="navbar">
     <ul class="ul">
         <li class="li_icon">
-            <a href="/">
+            <a href="/HPBEnterprice">
                 <img src="images/icon.png" alt="icon" class="icon" />
 
             </a>
@@ -42,13 +42,14 @@
             <c:when test="${admin}">
                 <li class="li_admin">
                     <a class="li_admin" href="login.jsp">Ver estadisticas</a>         
-                    <a class="li_a" href="registrarEmpleado.jsp">SignUp</a>
+                    <a class="li_a" href="registrarEmpleado.jsp">Registrar empleado</a>
                 </li>    
                 
             </c:when>
             <c:when test="${empleado}">
                 <li class="li_admin">
-                    <a class="li_admin" href="login.jsp">Ver mis estadiscas</a>         
+                    <a class="li_admin" href="login.jsp">Ver mis estadiscas</a>   
+                    <a href="agregarPC.jsp" class="li_admin">Agregar PC</a>
                 </li>    
                 
             </c:when>
