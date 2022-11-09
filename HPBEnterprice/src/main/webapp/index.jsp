@@ -34,31 +34,41 @@
             <div class="postLanding">
               <h3 class="postLanding__h3">Busca el computador de tus sueños</h3>
               <div class="postLanding__cajas">
+                 
+                      <a href="${pageContext.request.contextPath}/comprarPC?q=Oficina">
+                        <<div class="box">
+                          <img src="images/oficina.png" alt="Oficina" class="img" />
+
+                          <span class="span">Oficina</span>
+
+                        </div>
+                    </a>
+                      
+                  
                 
-                <a href="/Pcs?q=Oficina">
-                    <div class="box">
-                      <img src="images/oficina.png" alt="Oficina" layout="fixed" class="img" />
+                  
+                  
+                      <a href="${pageContext.request.contextPath}/comprarPC?q=Gamer">
+                        <div class="box">
+                          <img src="images/gamer.png" alt="Gamer"  class="img" />
 
-                      <span class="span">Oficina</span>
+                          <span class="span">Gamer</span>
 
-                    </div>
-                </a>
-                <a href="/Pcs?q=Gamer">
-                    <div class="box">
-                      <img src="images/gamer.png" alt="Gamer" layout="fixed" class="img" />
+                        </div>
+                    </a>
+                  
+                
+               
+                 
+                      <a href="${pageContext.request.contextPath}/comprarPC?q=Diseño">
+                        <div class="box">
+                          <img src="images/diseño.png" alt="Diseño" class="img" />
 
-                      <span class="span">Gamer</span>
+                          <span class="span">Diseño</span>
 
-                    </div>
-                </a>
-                <a href="/Pcs?q=Diseño">
-                    <div class="box">
-                      <img src="images/diseño.png" alt="Diseño" layout="fixed" class="img" />
-
-                      <span class="span">Diseño</span>
-
-                    </div>
-                </a>
+                        </div>
+                    </a>
+                  
               </div>
             </div>
         </main>

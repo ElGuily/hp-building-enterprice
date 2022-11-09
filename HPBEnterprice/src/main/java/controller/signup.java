@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import model.*;
 import model.ConectarBD;
@@ -30,7 +31,8 @@ import model.ConectarBD;
                     Cliente usuario = new Cliente(username, password);
                     gbd.registrarUsuario(usuario);
                     JOptionPane.showMessageDialog(null, "ERRO");
-                    
+                    HttpSession session = req.getSession();
+                    session.setAttribute("user", usuario);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                     
                 }else{

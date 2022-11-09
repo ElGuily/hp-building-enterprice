@@ -12,12 +12,15 @@ public class PC_Gamer extends PCs{
     private boolean RGB;
     private boolean refrigeracion_liquida;
 
-    public PC_Gamer(int id_pc, Enum_modelos modelo, double valor_PC, int c_i,boolean RGB, boolean refrigeracion_liquida) {
-        super(id_pc, valor_PC, modelo, c_i);
+    public PC_Gamer(String nombre,Enum_modelos modelo, double valor_PC, int c_i,boolean RGB, boolean refrigeracion_liquida) {
+        super(nombre, valor_PC, modelo, c_i);
         this.RGB = RGB;
         this.refrigeracion_liquida = refrigeracion_liquida;
     }
     
+    public PC_Gamer(String nombre, double valor_PC, Enum_modelos modelo, int c_i){
+        super(nombre, valor_PC, modelo, c_i);
+    }
     public double calcularPrecio(){
         int valorAgregado=0;
         

@@ -15,16 +15,16 @@
         <%@include file="components/nav-bar.jsp" %>
         <main class="main_signup">
             
-            <form action="agregarPC" method="POST" class="form_signup" enctype="multipart/form-data">
-                <p>${error}</p>
-                <label for="imagen-pc">Imagen: </label>
-                <input type="file" name="imagen-pc">
+            <form action="agregarPC" method="POST" class="form_signup">
+
                 <label for="nombre-pc">Nombre PC: </label>
                 <input type="text" name="nombre-pc">
                 <label for="modelo-pc">Modelo PC: </label>
                 <input type="text" name="modelo-pc">
+                
                 <label for="precio-pc">Precio: </label>
                 <input type="number" name="precio-pc">
+                
                 <select id="categoria-select" name="categoria-pc">
                     <option value="Gamer">Gamer</option>
                     <option value="Diseño">Diseño</option>

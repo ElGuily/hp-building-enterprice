@@ -113,7 +113,40 @@ public class GestorBD {
         }
     }
     
+    public ResultSet verCompu(String type){
+        ArrayList<PCs> pcs = new ArrayList<PCs>();
+        ResultSet pc = null;
+        try{
+            
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call verCompu('"+type+"');";
+           pc = this.stm.executeQuery(sql);
+
+           
+            
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ajajaj" + ex );
+        }
+        
+      return pc;
+    }
     
+    public void registrarPC(String nom, String cat, double precio, Enum_modelos modelo, int imp){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call registrarPC('"+nom+"', '"+modelo+"', '"+cat+"', "+precio+", "+imp+")";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
     
   
    

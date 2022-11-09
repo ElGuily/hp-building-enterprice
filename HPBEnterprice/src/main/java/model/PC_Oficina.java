@@ -12,9 +12,13 @@ public class PC_Oficina extends PCs {
     
     private boolean all_in_one;
 
-    public PC_Oficina(boolean all_in_one, int id_pc, double valor_PC, int componentes_imp) {
-        super(id_pc, valor_PC);
+    public PC_Oficina(String nombre, boolean all_in_one, double valor_PC,  Enum_modelos modelo, int c_i) {
+        super(nombre, valor_PC, modelo, c_i);
         this.all_in_one = all_in_one;
+    }
+    
+    public PC_Oficina(String nombre, double valor_PC, Enum_modelos modelo, int c_i){
+        super(nombre, valor_PC, modelo, c_i);
     }
     
     @Override

@@ -40,6 +40,8 @@ public class login extends HttpServlet{
                     req.setAttribute("info", "logueado exitosamente");
                     req.setAttribute("activo", true);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
+                    
+                    
                 }else if(gbd.loginEmpleado(username_login, password_login)==1){
                     req.setAttribute("empleado", true);
                     req.setAttribute("info", "logueado exitosamente");

@@ -9,8 +9,8 @@ package model;
  * @author ET36
  */
 public class PC_Diseño extends PCs {
-    public PC_Diseño(int id_pc, Enum_modelos modelo, double valor_PC, int c_i) {
-        super(id_pc, valor_PC, modelo, c_i);
+    public PC_Diseño(String nombre, double valor_PC, Enum_modelos modelo, int c_i) {
+        super(nombre, valor_PC, modelo, c_i);
     }
     
     public double calcularPrecio(){

@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Cliente;
 import model.ConectarBD;
 import model.GestorBD;
 /**
@@ -25,7 +27,12 @@ public class logout extends HttpServlet{
 
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
-
+                HttpSession session = req.getSession();
+                Cliente usu = (Cliente)session.getAttribute("user");
+                if (usu == null){
+                    req.getRequestDispatcher("index.jsp").forward(req, res);
+                }
+                session.removeAttribute("user");
                 req.setAttribute("activo", false);
                 req.getRequestDispatcher("/index.jsp").forward(req, res);
                 
