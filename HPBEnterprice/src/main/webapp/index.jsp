@@ -35,20 +35,8 @@
               <h3 class="postLanding__h3">Busca el computador de tus sueños</h3>
               <div class="postLanding__cajas">
                  
-                      <a href="${pageContext.request.contextPath}/comprarPC?q=Oficina">
-                        <<div class="box">
-                          <img src="images/oficina.png" alt="Oficina" class="img" />
-
-                          <span class="span">Oficina</span>
-
-                        </div>
-                    </a>
-                      
                   
-                
-                  
-                  
-                      <a href="${pageContext.request.contextPath}/comprarPC?q=Gamer">
+                    <a href="${pageContext.request.contextPath}/comprarPC?q=1">
                         <div class="box">
                           <img src="images/gamer.png" alt="Gamer"  class="img" />
 
@@ -56,18 +44,39 @@
 
                         </div>
                     </a>
-                  
-                
-               
-                 
-                      <a href="${pageContext.request.contextPath}/comprarPC?q=Diseño">
+                      
+                   <a href="${pageContext.request.contextPath}/comprarPC?q=2">
                         <div class="box">
                           <img src="images/diseño.png" alt="Diseño" class="img" />
 
                           <span class="span">Diseño</span>
 
                         </div>
+                    </a>     
+                        
+                    <a href="${pageContext.request.contextPath}/comprarPC?q=3">
+                        <<div class="box">
+                          <img src="images/oficina.png" alt="Oficina" class="img" />
+
+                          <span class="span">Oficina</span>
+
+                        </div>
                     </a>
+                         
+                        
+                    
+                        
+                   
+                  
+                
+                  
+                  
+                    
+                  
+                
+               
+                 
+                      
                   
               </div>
             </div>

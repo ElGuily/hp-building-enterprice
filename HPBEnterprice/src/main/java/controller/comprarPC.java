@@ -31,14 +31,20 @@ public class comprarPC extends HttpServlet{
             ArrayList<PCs> pc_gamer = new ArrayList<PCs>();
             ArrayList<PCs> pc_diseño = new ArrayList<PCs>();
             ArrayList<PCs> pc_oficina = new ArrayList<PCs>();
+          
+         
+            
             try(PrintWriter out = res.getWriter()){
                 
-                String type = req.getParameter("q");
-                
+                String type1 = req.getParameter("q");
+             
+                int type = Integer.parseInt(type1);
+               
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
                 
                 ResultSet pc = gbd.verCompu(type);
+         
                 try{
             
                     while(pc.next()){
@@ -48,24 +54,35 @@ public class comprarPC extends HttpServlet{
                         String imps = pc.getString("cant_comp_importados");
                         int imp = Integer.parseInt(imps);
                         Enum_modelos m = null;
-                        if("Gamer".equals(type)){
+                        int rgb = pc.getInt("rgb");
+                        int refri = pc.getInt("refri_liquid");
+                        int all = pc.getInt("all_in_one");
+                   
+                        if("1".equals(type1)){
+                            JOptionPane.showMessageDialog(null, "Entro en gamer");
                             
-                            PCs gamer = new PC_Gamer(nombre, valor, m.Elite600, imp);
+                            
+                            PCs gamer = new PC_Gamer(nombre, valor, m.Elite600, imp, rgb, refri);
+                            double valorPC = gamer.calcularPrecio();
+                            gamer.setValor_PC(valorPC);
                             pc_gamer.add(gamer);
-                            double precio = gamer.calcularPrecio();
                             req.setAttribute("pc", pc_gamer);
-                            req.setAttribute("precio", precio);
-                        }else if("Diseño".equals(type)){
-                           
+  
+                        }else if("2".equals(type1)){
+                            JOptionPane.showMessageDialog(null, "Entro en diseño");
                             PCs diseño = new PC_Diseño(nombre, valor, m.Elite600, imp);
-                            pc_diseño.add(diseño);
-                            diseño.calcularPrecio();
+                            double valorPC = diseño.calcularPrecio();
+                            diseño.setValor_PC(valorPC);
+                            pc_diseño.add(diseño);                         
                             req.setAttribute("pc", pc_diseño);
-                        }else if("Oficina".equals(type)){
-                           
-                            PCs oficina = new PC_Oficina(nombre, valor, m.Elite600, imp);
+                            
+                        }else if("3".equals(type1)){
+                            JOptionPane.showMessageDialog(null, "Entro en oficin");
+                            PCs oficina = new PC_Oficina(nombre, valor, m.Elite600, imp, all);
+                            double valorPC = oficina.calcularPrecio();
+                            oficina.setValor_PC(valorPC);
                             pc_oficina.add(oficina);
-                            oficina.calcularPrecio();
+                            
                             req.setAttribute("pc", pc_oficina);
                         }
                     }

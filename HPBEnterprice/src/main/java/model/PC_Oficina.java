@@ -10,9 +10,9 @@ package model;
  */
 public class PC_Oficina extends PCs {
     
-    private boolean all_in_one;
+    private int all_in_one;
 
-    public PC_Oficina(String nombre, boolean all_in_one, double valor_PC,  Enum_modelos modelo, int c_i) {
+    public PC_Oficina(String nombre, double valor_PC,  Enum_modelos modelo, int c_i, int all_in_one ) {
         super(nombre, valor_PC, modelo, c_i);
         this.all_in_one = all_in_one;
     }
@@ -23,7 +23,7 @@ public class PC_Oficina extends PCs {
     
     @Override
     public double calcularPrecio() {
-        if(this.all_in_one){
+        if(this.all_in_one==1){
             this.valor_PC+=5000;
         }
         return this.valor_PC;

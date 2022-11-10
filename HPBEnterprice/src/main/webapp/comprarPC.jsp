@@ -45,8 +45,8 @@
                 <c:forEach items="${pc}" var="pc">
                    <div class="pc_div">
                        <p>${pc.nombre} ${pc.modelo}</p> 
-                       <p>${precio}</p>
-
+                       <p>${pc.valor_PC}</p>
+                       <input type="submit" value="Comprar" />
 
                    </div> 
                </c:forEach>

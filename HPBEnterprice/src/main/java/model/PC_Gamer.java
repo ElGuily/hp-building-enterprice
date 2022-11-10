@@ -9,10 +9,10 @@ package model;
  * @author ET36
  */
 public class PC_Gamer extends PCs{
-    private boolean RGB;
-    private boolean refrigeracion_liquida;
+    private int RGB;
+    private int refrigeracion_liquida;
 
-    public PC_Gamer(String nombre,Enum_modelos modelo, double valor_PC, int c_i,boolean RGB, boolean refrigeracion_liquida) {
+    public PC_Gamer(String nombre ,double valor_PC,  Enum_modelos modelo, int c_i,int RGB, int refrigeracion_liquida) {
         super(nombre, valor_PC, modelo, c_i);
         this.RGB = RGB;
         this.refrigeracion_liquida = refrigeracion_liquida;
@@ -24,10 +24,10 @@ public class PC_Gamer extends PCs{
     public double calcularPrecio(){
         int valorAgregado=0;
         
-        if (this.RGB){
+        if (this.RGB==1){
             valorAgregado+=1500;
         }
-        if (this.refrigeracion_liquida){
+        if (this.refrigeracion_liquida==1){
             valorAgregado+=1500;
         }
         

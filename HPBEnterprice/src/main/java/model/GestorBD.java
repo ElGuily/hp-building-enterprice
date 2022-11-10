@@ -113,14 +113,14 @@ public class GestorBD {
         }
     }
     
-    public ResultSet verCompu(String type){
+    public ResultSet verCompu(int type){
         ArrayList<PCs> pcs = new ArrayList<PCs>();
         ResultSet pc = null;
         try{
             
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call verCompu('"+type+"');";
+            String sql = "call verCompu("+type+");";
            pc = this.stm.executeQuery(sql);
 
            
@@ -128,17 +128,17 @@ public class GestorBD {
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "ajajaj" + ex );
+            JOptionPane.showMessageDialog(null, "error en ver compu / gestorBD" + ex );
         }
         
       return pc;
     }
     
-    public void registrarPC(String nom, String cat, double precio, Enum_modelos modelo, int imp){
+    public void registrarPC(String nom, String cat, double precio, Enum_modelos modelo, int imp, boolean rgb, boolean all_in_one, boolean refri){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call registrarPC('"+nom+"', '"+modelo+"', '"+cat+"', "+precio+", "+imp+")";
+            String sql = "call registrarPC('"+nom+"', '"+modelo+"', '"+cat+"', "+precio+", "+imp+", "+rgb+", "+all_in_one+","+refri+")";
             this.stm.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, sql);
         }catch(SQLException ex){
