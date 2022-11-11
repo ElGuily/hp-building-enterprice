@@ -134,7 +134,7 @@ public class GestorBD {
       return pc;
     }
     
-    public void registrarPC(String nom, String cat, double precio, Enum_modelos modelo, int imp, boolean rgb, boolean all_in_one, boolean refri){
+    public void registrarPC(String nom, String cat, double precio, String modelo, int imp, boolean rgb, boolean all_in_one, boolean refri){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
@@ -146,6 +146,36 @@ public class GestorBD {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, ex );
         }
+    }
+    
+    public void eliminarPC(String nombre){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call eliminarPC('"+nombre+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "EliminarPC" + ex );
+        }
+    }
+    
+    public ResultSet obtenerEmpleado(String user, String passw){
+        ResultSet emp = null;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerEmpleado('"+user+"', '"+passw+"')";
+            emp = this.stm.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerEmp" + ex );
+        }
+        return emp;
     }
     
   

@@ -79,7 +79,8 @@ public class agregarPC extends HttpServlet{
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
                 
-                gbd.registrarPC(nombre_pc, cat, precio_pc, m.HP2004, imps, rgb, all, refri);
+               
+                gbd.registrarPC(nombre_pc, cat, precio_pc, modelo_pc, imps, rgb, all, refri);
                 req.getRequestDispatcher("index.jsp").forward(req, res);
                 
             }

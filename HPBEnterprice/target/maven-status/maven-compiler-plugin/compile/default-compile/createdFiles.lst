@@ -5,12 +5,15 @@ controller\comprarPC.class
 model\Persona.class
 model\Venta.class
 model\PC_Gamer.class
+controller\eliminarPC.class
 controller\login.class
 model\PCs.class
 controller\signup.class
 model\Direccion.class
+controller\añadirAlCarrito.class
 model\Empleado.class
 model\PC_Diseño.class
+controller\estadisticas.class
 controller\agregarPC.class
 model\Cliente.class
 model\ConectarBD.class

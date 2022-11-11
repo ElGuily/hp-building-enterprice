@@ -49,6 +49,10 @@ import model.ConectarBD;
     }
 
 
-    
+    /*
+
+    1. Aplicar interfaz
+
+*/
     
 

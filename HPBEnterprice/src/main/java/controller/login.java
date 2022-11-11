@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.ConectarBD;
 import model.GestorBD;
 
@@ -28,7 +29,7 @@ public class login extends HttpServlet{
                 
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
-                
+                HttpSession session = req.getSession();
                 if(gbd.loginUsuario(username_login, password_login)==1){
                     if(username_login.equals("admin") && password_login.equals("admin")){
                         req.setAttribute("admin", true);
@@ -38,14 +39,16 @@ public class login extends HttpServlet{
                     
                     
                     req.setAttribute("info", "logueado exitosamente");
-                    req.setAttribute("activo", true);
+                    session.setAttribute("activo", true);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                     
                     
                 }else if(gbd.loginEmpleado(username_login, password_login)==1){
-                    req.setAttribute("empleado", true);
+                    session.setAttribute("empleado", true);
                     req.setAttribute("info", "logueado exitosamente");
-                    req.setAttribute("activo", true);
+                    session.setAttribute("activo", true);
+                    session.setAttribute("user_emp", username_login);
+                    session.setAttribute("passw_emp", password_login);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                 }else{
                     req.setAttribute("info", "El nombre de usuario o la contraseña son incorrectas");

@@ -8,7 +8,7 @@ package model;
  *
  * @author ET36
  */
-public abstract class PCs {
+public abstract class PCs implements Importable{
     private String nombre;
     double  valor_PC;
     private Enum_modelos modelo;
@@ -64,8 +64,11 @@ public abstract class PCs {
         this.componentes_imp = componentes_imp;
     }
     
-    
-    
+   
+    @Override
+    public void calcularImpuesto(){
+        this.valor_PC = this.valor_PC + (this.componentes_imp*1.5);
+    }
     
     
     public abstract double calcularPrecio();

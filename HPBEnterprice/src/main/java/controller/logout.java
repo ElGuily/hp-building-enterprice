@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import model.ConectarBD;
 import model.GestorBD;
@@ -24,7 +25,8 @@ import model.GestorBD;
 public class logout extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             try(PrintWriter out = res.getWriter()){
-
+             
+               
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
                 HttpSession session = req.getSession();
@@ -33,7 +35,9 @@ public class logout extends HttpServlet{
                     req.getRequestDispatcher("index.jsp").forward(req, res);
                 }
                 session.removeAttribute("user");
-                req.setAttribute("activo", false);
+                session.setAttribute("activo", false);
+                session.setAttribute("admin",false);
+                session.setAttribute("empleado", false);
                 req.getRequestDispatcher("/index.jsp").forward(req, res);
                 
             }

@@ -46,8 +46,22 @@
                    <div class="pc_div">
                        <p>${pc.nombre} ${pc.modelo}</p> 
                        <p>${pc.valor_PC}</p>
-                       <input type="submit" value="Comprar" />
-
+                       <form action="agregarAlCarrito" method="POST" name="addForm">
+                            <button value="${pc}" name="botonAgregar">
+                                Agregar
+                            </button>
+                       </form>
+                       
+                       <c:choose>
+                           <c:when test="${empleado || admin}">
+                               <form action="eliminarPC" method="POST" value="${pc.nombre}" name="deleteForm">
+                                   <button value="${pc.nombre}" name="botonEliminar">
+                                       Borrar
+                                   </button>
+                               </form>
+                               
+                           </c:when>
+                       </c:choose>
                    </div> 
                </c:forEach>
            

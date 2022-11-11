@@ -54,15 +54,29 @@ public class comprarPC extends HttpServlet{
                         String imps = pc.getString("cant_comp_importados");
                         int imp = Integer.parseInt(imps);
                         Enum_modelos m = null;
+                        String modelo_pc = pc.getString("modelo");
                         int rgb = pc.getInt("rgb");
                         int refri = pc.getInt("refri_liquid");
                         int all = pc.getInt("all_in_one");
-                   
+                        if(m.Elite600.getNombre_modelo().equals(modelo_pc)){
+                             m = m.Elite600;
+                        }else if(m.Elite800.getNombre_modelo().equals(modelo_pc)){
+                             m = m.Elite800;
+                        }else if(m.HP2004.getNombre_modelo().equals(modelo_pc)){
+                             m = m.HP2004;
+                        }else if(m.ProDesk400.getNombre_modelo().equals(modelo_pc)){
+                             m = m.ProDesk400;
+                        }else if(m.ProOne.getNombre_modelo().equals(modelo_pc)){
+                             m = m.ProOne;
+                        }else if(m.miniHPpro400.getNombre_modelo().equals(modelo_pc)){
+                            m = m.miniHPpro400;
+                        }
+                        
                         if("1".equals(type1)){
                             JOptionPane.showMessageDialog(null, "Entro en gamer");
                             
                             
-                            PCs gamer = new PC_Gamer(nombre, valor, m.Elite600, imp, rgb, refri);
+                            PCs gamer = new PC_Gamer(nombre, valor, m, imp, rgb, refri);
                             double valorPC = gamer.calcularPrecio();
                             gamer.setValor_PC(valorPC);
                             pc_gamer.add(gamer);
@@ -70,7 +84,7 @@ public class comprarPC extends HttpServlet{
   
                         }else if("2".equals(type1)){
                             JOptionPane.showMessageDialog(null, "Entro en diseño");
-                            PCs diseño = new PC_Diseño(nombre, valor, m.Elite600, imp);
+                            PCs diseño = new PC_Diseño(nombre, valor, m, imp);
                             double valorPC = diseño.calcularPrecio();
                             diseño.setValor_PC(valorPC);
                             pc_diseño.add(diseño);                         
@@ -78,7 +92,7 @@ public class comprarPC extends HttpServlet{
                             
                         }else if("3".equals(type1)){
                             JOptionPane.showMessageDialog(null, "Entro en oficin");
-                            PCs oficina = new PC_Oficina(nombre, valor, m.Elite600, imp, all);
+                            PCs oficina = new PC_Oficina(nombre, valor, m, imp, all);
                             double valorPC = oficina.calcularPrecio();
                             oficina.setValor_PC(valorPC);
                             pc_oficina.add(oficina);

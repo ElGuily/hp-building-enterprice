@@ -20,8 +20,15 @@
 
                 <label for="nombre-pc">Nombre PC: </label>
                 <input type="text" name="nombre-pc">
-                <label for="modelo-pc">Modelo PC: </label>
-                <input type="text" name="modelo-pc">
+                <label for="modelo-pc">Modelo PC: </label>               
+                <select id="modelo_pc" name="modelo-pc">                 
+                    <option value="Elite600">Elite600</option>
+                    <option value="ProOne">ProOne</option>
+                    <option value="Elite800">Elite800</option>
+                    <option value="ProDesk400">ProDesk400</option>
+                    <option value="miniHPpro400">miniHPpro400</option>
+                    <option value="HP2004">HP2004</option>
+                </select>
 
                 <label for="precio-pc">Precio: </label>
                 <input type="number" name="precio-pc">

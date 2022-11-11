@@ -48,7 +48,13 @@
             </c:when>
             <c:when test="${empleado}">
                 <li class="li_admin">
-                    <a class="li_admin" href="login.jsp">Ver mis estadiscas</a>   
+                    <form action="estadisticas" method="POST">
+                        
+                        <button>
+                            Ver Estadisticas
+                        </button>
+                    </form>
+                    
                     <a href="agregarPC.jsp" class="li_admin">Agregar PC</a>
                 </li>    
                 
