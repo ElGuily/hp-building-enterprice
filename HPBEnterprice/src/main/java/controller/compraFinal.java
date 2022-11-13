@@ -67,6 +67,17 @@ public class compraFinal extends HttpServlet{
             session.setAttribute("factura",  venta);
           
             gbd.actualizarFacturado(random, total);
+            
+           ResultSet cart = gbd.obtenerCarrito(username);
+            try {
+                while(cart.next()){
+                    String nombre_prod = cart.getString("producto");
+                    JOptionPane.showMessageDialog(null, nombre_prod);
+                    gbd.aumentarPC(nombre_prod);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
+            }
            req.getRequestDispatcher("compraFinal.jsp").forward(req, res);
         }
     

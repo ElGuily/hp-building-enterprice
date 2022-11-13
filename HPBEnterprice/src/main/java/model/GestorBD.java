@@ -279,6 +279,33 @@ public class GestorBD {
             JOptionPane.showMessageDialog(null, ex );
         }
     }
+     public void eliminarDelCarrito(String nombre){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call eliminarDelCarrito('"+nombre+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "EliminarPC" + ex );
+        }
+    }
    
+     
+    public void aumentarPC(String nombre){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call aumentarPC('"+nombre+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
    
 }

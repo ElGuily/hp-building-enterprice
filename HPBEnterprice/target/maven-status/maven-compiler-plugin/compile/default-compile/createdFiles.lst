@@ -16,6 +16,7 @@ model\Empleado.class
 model\PC_Diseño.class
 controller\estadisticas.class
 controller\agregarPC.class
+controller\eliminarDelCarrito.class
 model\Cliente.class
 model\ConectarBD.class
 controller\logout.class
