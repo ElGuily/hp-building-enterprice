@@ -21,6 +21,10 @@ public class PC_Gamer extends PCs{
     public PC_Gamer(String nombre, double valor_PC, Enum_modelos modelo, int c_i){
         super(nombre, valor_PC, modelo, c_i);
     }
+    
+    public PC_Gamer(String nombre,double valor_PC, Enum_modelos modelo ){
+        super(nombre, valor_PC, modelo);
+    }
     public double calcularPrecio(){
         int valorAgregado=0;
         

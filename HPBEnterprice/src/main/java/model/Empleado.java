@@ -24,7 +24,13 @@ public class Empleado extends Persona {
     public Empleado(String nombre, String usuario, String passw, int DNI, String email){
          super(nombre, usuario, passw, DNI, email);
     }
+    public Empleado(String nombre,String email, double facturado){
+        super(nombre, email);
 
+        this.facturado = facturado;
+        
+        
+    }
     public ArrayList<Venta> getPedido() {
         return pedido;
     }
@@ -38,7 +44,7 @@ public class Empleado extends Persona {
     }
 
     public void setFacturado(double facturado) {
-        this.facturado = facturado;
+        this.facturado += facturado;
     }
 
     @Override

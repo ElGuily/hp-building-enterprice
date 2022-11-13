@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Cliente;
 import model.ConectarBD;
+import model.Empleado;
 import model.GestorBD;
 
 /**
@@ -37,7 +39,11 @@ public class login extends HttpServlet{
                         req.setAttribute("admin", false);
                     }
                     
+                    Cliente user = new Cliente(username_login, password_login);
                     
+                    session.setAttribute("user", user);
+                    session.setAttribute("user_emp", username_login);
+                    session.setAttribute("passw", password_login);
                     req.setAttribute("info", "logueado exitosamente");
                     session.setAttribute("activo", true);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
@@ -47,8 +53,11 @@ public class login extends HttpServlet{
                     session.setAttribute("empleado", true);
                     req.setAttribute("info", "logueado exitosamente");
                     session.setAttribute("activo", true);
+                    
+                    Cliente user = new Cliente(username_login, password_login);
                     session.setAttribute("user_emp", username_login);
                     session.setAttribute("passw_emp", password_login);
+                    session.setAttribute("user", user);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                 }else{
                     req.setAttribute("info", "El nombre de usuario o la contraseña son incorrectas");
@@ -56,6 +65,7 @@ public class login extends HttpServlet{
                 }
                 
             }
+            
         }
     
 }

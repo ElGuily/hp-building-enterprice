@@ -28,7 +28,14 @@
                 <li class="li_profile">
                     <form action="logout" method="POST">
                         <input type="submit" value="Logout" class="logout-button"/>
-                    </form>                   
+                        
+                        
+                    </form>          
+                    <form action="agregarAlCarrito" method="POST">
+                            <button>
+                                Ver carrito
+                            </button>
+                    </form>
                 </li>
             </c:when>
             <c:otherwise>

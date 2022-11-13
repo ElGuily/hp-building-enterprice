@@ -27,9 +27,11 @@ public abstract class PCs implements Importable{
         this.componentes_imp = componentes_imp;
     } 
 
-    public PCs( double valor_PC) {
-        
+    public PCs(String nombre, double valor_PC, Enum_modelos modelo) {
+        this.modelo = modelo;
         this.valor_PC = valor_PC;
+        this.nombre = nombre;
+        
     }
 
     public String getNombre() {
@@ -72,6 +74,15 @@ public abstract class PCs implements Importable{
     
     
     public abstract double calcularPrecio();
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + "\n"+
+                "Precio:" + valor_PC + "\n"+
+                "Modelo:" + modelo;
+                
+    }
+    
     
     
 }

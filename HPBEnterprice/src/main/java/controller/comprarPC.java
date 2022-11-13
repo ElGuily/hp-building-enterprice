@@ -9,11 +9,14 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import model.ConectarBD;
 import model.GestorBD;
@@ -73,7 +76,7 @@ public class comprarPC extends HttpServlet{
                         }
                         
                         if("1".equals(type1)){
-                            JOptionPane.showMessageDialog(null, "Entro en gamer");
+                            
                             
                             
                             PCs gamer = new PC_Gamer(nombre, valor, m, imp, rgb, refri);
@@ -83,7 +86,7 @@ public class comprarPC extends HttpServlet{
                             req.setAttribute("pc", pc_gamer);
   
                         }else if("2".equals(type1)){
-                            JOptionPane.showMessageDialog(null, "Entro en diseño");
+                          
                             PCs diseño = new PC_Diseño(nombre, valor, m, imp);
                             double valorPC = diseño.calcularPrecio();
                             diseño.setValor_PC(valorPC);
@@ -91,7 +94,7 @@ public class comprarPC extends HttpServlet{
                             req.setAttribute("pc", pc_diseño);
                             
                         }else if("3".equals(type1)){
-                            JOptionPane.showMessageDialog(null, "Entro en oficin");
+                            
                             PCs oficina = new PC_Oficina(nombre, valor, m, imp, all);
                             double valorPC = oficina.calcularPrecio();
                             oficina.setValor_PC(valorPC);
@@ -112,5 +115,5 @@ public class comprarPC extends HttpServlet{
                 
             }
         }
-    
+ 
 }

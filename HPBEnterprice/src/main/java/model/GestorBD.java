@@ -1,10 +1,13 @@
-package model;
+    package model;
 
+import controller.compraFinal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -103,7 +106,7 @@ public class GestorBD {
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call registrarEmpleado('"+e.getUsuario()+"','"+e.getEmail()+"', '"+e.getPassw()+"', "+e.getDNI()+", '"+e.getNombre()+"')";
+            String sql = "call registrarEmpleado('"+e.getUsuario()+"','"+e.getEmail()+"', '"+e.getPassw()+"', "+e.getDNI()+", '"+e.getNombre()+"', 0)";
             this.stm.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, sql);
         }catch(SQLException ex){
@@ -178,6 +181,104 @@ public class GestorBD {
         return emp;
     }
     
+     public ResultSet obtenerPC(String nombre){
+        ResultSet pc = null;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerPC('"+nombre+"')";
+            pc = this.stm.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerPC" + ex );
+        }
+        return pc;
+    }
+     
+     public void registrarCarrito(String nom, String usuario){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call registrarCarrito('"+nom+"', '"+usuario+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
+     
+     public ResultSet obtenerCarrito(String usuario){
+        ResultSet pc = null;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerCarrito('"+usuario+"')";
+            pc = this.stm.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerPC" + ex );
+        }
+        return pc;
+    }
   
+     public ResultSet obtenerEmpleadoAlAzar(int id){
+        ResultSet pc = null;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerEmpleadoAlAzar("+id+")";
+            pc = this.stm.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerPC" + ex );
+        }
+        return pc;
+    }
+     
+    public int totalEmpleados(){
+        int cantidad = 0;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call totalEmpleado()";
+            ResultSet emp = this.stm.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, sql);
+            try {
+                while(emp.next()){
+                    cantidad = emp.getInt("cant");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerPC" + ex );
+        }
+        return cantidad;
+    }
+    
+    public void actualizarFacturado(int id, double facturado){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call actualizarFacturado("+id+", "+facturado+")";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
+   
    
 }

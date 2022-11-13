@@ -21,7 +21,11 @@ public class Venta {
         
         this.cliente = c;
         this.empleado = e;
-        
+        this.PCs = new ArrayList<PCs>();
+    }
+    
+    public Venta(){
+        this.PCs = new ArrayList<PCs>();
     }
     
     public String emitirFactura(){

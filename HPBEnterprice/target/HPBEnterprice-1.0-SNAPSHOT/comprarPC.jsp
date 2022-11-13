@@ -47,7 +47,7 @@
                        <p>${pc.nombre} ${pc.modelo}</p> 
                        <p>${pc.valor_PC}</p>
                        <form action="agregarAlCarrito" method="POST" name="addForm">
-                            <button value="${pc}" name="botonAgregar">
+                            <button value="${pc.nombre}" name="botonAgregar">
                                 Agregar
                             </button>
                        </form>

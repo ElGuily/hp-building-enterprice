@@ -35,6 +35,7 @@ public class estadisticas extends HttpServlet{
            String email = "";
            Object user1 = sesion.getAttribute("user_emp");
            Object password1 = sesion.getAttribute("passw_emp");
+           double facturado = 0;
            String user = String.valueOf(user1);
            String password = String.valueOf(password1);
            GestorBD gbd = new GestorBD();
@@ -44,9 +45,10 @@ public class estadisticas extends HttpServlet{
                    nombre =  emp.getString("nombre_empleado");
                    dni = emp.getInt("DNI_empleado");
                    email = emp.getString("email_empleado");
+                   facturado = emp.getDouble("facturado");
                 }
                 
-                Empleado empleado = new Empleado(0, nombre, user, password, dni, email);
+                Empleado empleado = new Empleado(facturado, nombre, user, password, dni, email);
                 req.setAttribute("empleadoDatos", empleado);
                 
                 /* ESTO FUNCIONA -- HAY QUE HACER UN SELECT DE EMPLEADO Y DE AHI SACAR LOS DATOS*/

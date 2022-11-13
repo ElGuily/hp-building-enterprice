@@ -31,8 +31,7 @@ import model.ConectarBD;
                     Cliente usuario = new Cliente(username, password);
                     gbd.registrarUsuario(usuario);
                     JOptionPane.showMessageDialog(null, "ERRO");
-                    HttpSession session = req.getSession();
-                    session.setAttribute("user", usuario);
+                    
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                     
                 }else{

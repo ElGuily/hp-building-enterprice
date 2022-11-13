@@ -13,6 +13,10 @@ public class PC_Diseño extends PCs {
         super(nombre, valor_PC, modelo, c_i);
     }
     
+    public PC_Diseño(String nombre,double valor_PC, Enum_modelos modelo ){
+        super(nombre, valor_PC, modelo);
+    }
+    
     public double calcularPrecio(){
         if (this.valor_PC == 0){
             this.valor_PC = 45000;

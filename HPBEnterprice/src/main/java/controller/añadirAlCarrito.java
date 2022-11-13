@@ -6,6 +6,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import model.ConectarBD;
-import model.GestorBD;
-import model.PCs;
+import model.*;
+
 
 /**
  *
@@ -29,12 +31,94 @@ import model.PCs;
 
 public class añadirAlCarrito extends HttpServlet{
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+            Venta v = new Venta();
+            
+            ArrayList<PCs> carrito = new ArrayList<PCs>();
+            GestorBD gbd = new GestorBD();
+            HttpSession ses = req.getSession();
+            Enum_modelos m = null;
+            
+            ResultSet pcs = gbd.obtenerPC(req.getParameter("botonAgregar"));
+            JOptionPane.showMessageDialog(null, pcs);
+            Object user1 = ses.getAttribute("user_emp");
+            String user = String.valueOf(user1);
+            int total = 0;
+            if(pcs != null){
+                try {
+                while(pcs.next()){
+                    String nombre = pcs.getString("nombre_pc");
+                    String modelo_pc = pcs.getString("modelo");
+                    double precio = pcs.getDouble("precio");
+                    int cat = pcs.getInt("id_categoria");
+                    
+                    gbd.registrarCarrito(nombre, user);
+                    
+                    
+                }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(añadirAlCarrito.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             
             
-            String pc = req.getParameter("botonAgregar");
-            JOptionPane.showMessageDialog(null, pc);
-         
-            req.getRequestDispatcher("index.jsp").forward(req, res);
+            
+            ResultSet rs = gbd.obtenerCarrito(user);
+            try {
+                while(rs.next()){
+                    String nombreCompu = rs.getString("producto");
+                    
+                    ResultSet computadora = gbd.obtenerPC(nombreCompu);
+                    
+                    while(computadora.next()){
+                            String nombre = computadora.getString("nombre_pc");
+                            String modelo_pc = computadora.getString("modelo");
+                            double precio = computadora.getDouble("precio");
+                            int cat =computadora.getInt("id_categoria");
+                            
+                            
+                            if(m.Elite600.getNombre_modelo().equals(modelo_pc)){
+                                m = m.Elite600;
+                           }else if(m.Elite800.getNombre_modelo().equals(modelo_pc)){
+                                m = m.Elite800;
+                           }else if(m.HP2004.getNombre_modelo().equals(modelo_pc)){
+                                m = m.HP2004;
+                           }else if(m.ProDesk400.getNombre_modelo().equals(modelo_pc)){
+                                m = m.ProDesk400;
+                           }else if(m.ProOne.getNombre_modelo().equals(modelo_pc)){
+                                m = m.ProOne;
+                           }else if(m.miniHPpro400.getNombre_modelo().equals(modelo_pc)){
+                               m = m.miniHPpro400;
+                           }
+                            if(cat==1){
+                                PCs pc_gamer = new PC_Gamer(nombre, precio, m);
+                                v.añadirPC(pc_gamer);
+                                carrito.add(pc_gamer);
+                                
+                            }else if(cat==2){
+                                PCs pc_diseño = new PC_Diseño(nombre, precio, m);
+                                v.añadirPC(pc_diseño);
+                                carrito.add(pc_diseño);
+                                
+                            }else if(cat==3){
+                                PCs pc_oficina = new PC_Oficina(nombre, precio, m);
+                                v.añadirPC(pc_oficina);
+                                carrito.add(pc_oficina);
+                                
+                            }
+                        
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(añadirAlCarrito.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+            ses.setAttribute("carrito", carrito);
+            ses.setAttribute("user", user);
+            
+            ses.setAttribute("total", v.calcularTotal());
+            
+            req.getRequestDispatcher("carrito.jsp").forward(req, res);
            
         }
     
