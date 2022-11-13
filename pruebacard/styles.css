@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+  height: 100vh;
+}
+
+.main .hoverCard {
+  position: relative;
+  background: transparent;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  width: 300px;
+  height: 300px;
+}
+
+.main .hoverCard:hover .card {
+  -webkit-transform: rotateX(-180deg);
+          transform: rotateX(-180deg);
+}
+
+.main .hoverCard .card {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+}
+
+.main .hoverCard .card .front {
+  border-radius: 20px;
+  -webkit-box-shadow: inset 0 0 5px #000;
+          box-shadow: inset 0 0 5px #000;
+  border: 1px solid gray;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main .hoverCard .card .front img {
+  width: 90%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 10px;
+}
+
+.main .hoverCard .card .back {
+  border-radius: 20px;
+  -webkit-box-shadow: inset 0 0 5px #000;
+          box-shadow: inset 0 0 5px #000;
+  border: 1px solid gray;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotateX(-180deg);
+          transform: rotateX(-180deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main .hoverCard .card .back .title {
+  text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.main .hoverCard .card .back .description {
+  text-align: center;
+  width: 80%;
+}
+
+.main .hoverCard .card .back .price {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: green;
+  font-size: 30px;
+}
+
+.main .hoverCard .card .back .btn {
+  background: #000;
+  color: white;
+  position: absolute;
+  font-size: 20px;
+  width: 100%;
+  height: 60px;
+  bottom: 0;
+  border-radius: 0 0 20px 20px;
+}
+
+.main .hoverCard .card .back .btn:hover {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-box-shadow: 0 0 5px #000;
+          box-shadow: 0 0 5px #000;
+  color: #ddd;
+}
+
+.main .hoverCard .card .back .delete-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: red;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 20px 0 20px 0;
+}
+
+.main .hoverCard .card .back .delete-btn:hover {
+  -webkit-box-shadow: 0 0 5px #f00;
+          box-shadow: 0 0 5px #f00;
+}
+
+.main .hoverCard .card .back .delete-btn img {
+  width: 25px;
+}
+/*# sourceMappingURL=styles.css.map */
