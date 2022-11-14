@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Venta {
     private int id_venta;
+    private static int nro_venta;
     Cliente cliente;
     Empleado empleado;
     ArrayList<PCs> PCs;
@@ -22,6 +23,7 @@ public class Venta {
         this.cliente = c;
         this.empleado = e;
         this.PCs = new ArrayList<PCs>();
+        this.id_venta = ++this.nro_venta;
     }
     
     public Venta(){

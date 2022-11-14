@@ -53,8 +53,10 @@
                             out.print("<h1> Producto mas vendido: " + nom + "</h1>");
                             out.print("<h2> Cantidad:" + cant + "</h2>");
                             out.print("</div");
-                            
-
+                            double comisiones = gbd.obtenerTotalComision();
+                            out.print("<div>");
+                            out.print("<h1> Total de comisiones: "+ comisiones + "</h1>");
+                            out.print("</div>");
                         %>
                     </c:when>
                 </c:choose>

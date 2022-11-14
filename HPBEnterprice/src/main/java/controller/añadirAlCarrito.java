@@ -32,7 +32,7 @@ import model.*;
 public class añadirAlCarrito extends HttpServlet{
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             Venta v = new Venta();
-            
+            String nombrePC = "";
             ArrayList<PCs> carrito = new ArrayList<PCs>();
             GestorBD gbd = new GestorBD();
             HttpSession ses = req.getSession();
@@ -43,6 +43,9 @@ public class añadirAlCarrito extends HttpServlet{
             Object user1 = ses.getAttribute("user_emp");
             String user = String.valueOf(user1);
             int total = 0;
+            double comision = 0;
+            
+            
             if(pcs != null){
                 try {
                 while(pcs.next()){
@@ -59,7 +62,7 @@ public class añadirAlCarrito extends HttpServlet{
                         gbd.actualizarCantidadCarrito(nombre, user);
                         gbd.actualizarPrecioCarrito(cant +1, nombre, user);
                     }else{
-                        gbd.registrarCarrito(nombre, user, precio);
+                        gbd.registrarCarrito(nombre, user, precio, comision);
                     }
                     
                     
@@ -81,7 +84,7 @@ public class añadirAlCarrito extends HttpServlet{
                     ResultSet computadora = gbd.obtenerPC(nombreCompu);
                     
                     while(computadora.next()){
-                            String nombre = computadora.getString("nombre_pc");
+                            nombrePC = computadora.getString("nombre_pc");
                             String modelo_pc = computadora.getString("modelo");
                             int cantImp = computadora.getInt("cant_comp_importados");
                             int cat =computadora.getInt("id_categoria");
@@ -105,20 +108,25 @@ public class añadirAlCarrito extends HttpServlet{
                                m = m.miniHPpro400;
                            }
                             if(cat==1){
-                                PCs pc_gamer = new PC_Gamer(nombre, valorTotal, m, rgb, refri);
+                                PCs pc_gamer = new PC_Gamer(nombrePC, valorTotal, m, cantImp, rgb, refri);
                               
+                                
+                                comision = pc_gamer.calcularImpuesto(comision);
+                                JOptionPane.showMessageDialog(null, comision);
                                 v.añadirPC(pc_gamer);
                                 JOptionPane.showMessageDialog(null, "Valor: "+ pc_gamer.getValor_PC());
                                 
                                 carrito.add(pc_gamer);
                                 
                             }else if(cat==2){
-                                PCs pc_diseño = new PC_Diseño(nombre, valorTotal, m);
+                                PCs pc_diseño = new PC_Diseño(nombrePC, valorTotal, m, cantImp);
+                                comision = pc_diseño.calcularImpuesto(comision);
                                 v.añadirPC(pc_diseño);
                                 carrito.add(pc_diseño);
                                 
                             }else if(cat==3){
-                                PCs pc_oficina = new PC_Oficina(nombre, valorTotal, m, cantImp, all_in_one);
+                                PCs pc_oficina = new PC_Oficina(nombrePC, valorTotal, m, cantImp, all_in_one);
+                                comision = pc_oficina.calcularImpuesto(comision);
                              
                                 v.añadirPC(pc_oficina);
                                 carrito.add(pc_oficina);
@@ -130,7 +138,7 @@ public class añadirAlCarrito extends HttpServlet{
             } catch (SQLException ex) {
                 Logger.getLogger(añadirAlCarrito.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
+            gbd.actualizarComision(comision, nombrePC, user);
             ses.setAttribute("carrito", carrito);
             
             

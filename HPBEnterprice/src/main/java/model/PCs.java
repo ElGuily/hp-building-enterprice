@@ -14,6 +14,7 @@ public abstract class PCs implements Importable{
     private Enum_modelos modelo;
     private int componentes_imp;
     
+    
     public PCs( String nombre, double valor_PC, Enum_modelos modelo, int componentes_imp) {
         this.nombre = nombre;
         this.valor_PC = valor_PC;
@@ -68,8 +69,8 @@ public abstract class PCs implements Importable{
     
    
     @Override
-    public void calcularImpuesto(){
-        this.valor_PC = this.valor_PC + (this.componentes_imp*1.5);
+    public double calcularImpuesto(double comision){
+        return comision = comision+ (this.componentes_imp*200);
     }
     
     

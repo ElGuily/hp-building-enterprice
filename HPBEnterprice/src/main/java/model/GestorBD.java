@@ -197,11 +197,11 @@ public class GestorBD {
         return pc;
     }
      
-     public void registrarCarrito(String nom, String usuario, double valor){
+     public void registrarCarrito(String nom, String usuario, double valor, double comision){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call registrarCarrito('"+nom+"', '"+usuario+"', "+valor+")";
+            String sql = "call registrarCarrito('"+nom+"', '"+usuario+"', "+valor+", "+comision+")";
             this.stm.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, sql);
         }catch(SQLException ex){
@@ -294,11 +294,11 @@ public class GestorBD {
     }
    
      
-    public void aumentarPC(String nombre){
+    public void aumentarPC(String nombre, int cant){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call aumentarPC('"+nombre+"')";
+            String sql = "call aumentarPC('"+nombre+"', "+cant+")";
             this.stm.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, sql);
         }catch(SQLException ex){
@@ -372,6 +372,43 @@ public class GestorBD {
             JOptionPane.showMessageDialog(null, ex );
         }
     }
+   
+   public void actualizarComision(double comision, String nombre, String usuario){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call actualizarComision("+comision+", '"+nombre+"', '"+usuario+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
+   
+   public double obtenerTotalComision(){
+        
+        double totalComisiones = 0;
+        
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerTotalComision()";
+            ResultSet pc = this.stm.executeQuery(sql);
+            if(pc.next()){
+                totalComisiones = pc.getDouble("total");
+            }
+            JOptionPane.showMessageDialog(null, sql);            
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,  ex );
+        }
+        return totalComisiones;
+    }
+   
+    
    
    
    

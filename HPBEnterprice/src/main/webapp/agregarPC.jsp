@@ -17,7 +17,8 @@
         <main class="main_signup">
 
             <form action="agregarPC" method="POST" class="form_signup">
-
+               
+               
                 <label for="nombre-pc">Nombre PC: </label>
                 <input type="text" name="nombre-pc">
                 <label for="modelo-pc">Modelo PC: </label>               
@@ -49,9 +50,10 @@
                     <label for="refrigeracionliquida">Refrigeracion Liquida</label>
 
                 </div>
-
+                <input type="file" name="foto_pc">
                 <label for="importados">Comp. Importados: </label>
                 <input type="number" name="importados">
+                
                 <input type="submit" value="Next">
 
             </form>          

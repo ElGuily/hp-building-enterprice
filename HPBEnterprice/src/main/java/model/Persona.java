@@ -8,7 +8,6 @@ public class Persona {
     private String passw;
     private int DNI;
     private String email;
-    private boolean activo;
 
     public Persona(String nombre, String usuario, String passw, int DNI, String email) {
  
@@ -66,13 +65,7 @@ public class Persona {
         this.email = email;
     }
 
-    public boolean isActivo() {
-        return activo;
-    }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
 
     
     @Override

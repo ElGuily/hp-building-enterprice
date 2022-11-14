@@ -9,5 +9,5 @@ package model;
  * @author ET36
  */
 public interface Importable {
-    public abstract void calcularImpuesto();
+    public abstract double calcularImpuesto(double comision);
 }

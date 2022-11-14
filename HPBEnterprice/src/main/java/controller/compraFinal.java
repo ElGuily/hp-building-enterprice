@@ -72,8 +72,9 @@ public class compraFinal extends HttpServlet{
             try {
                 while(cart.next()){
                     String nombre_prod = cart.getString("producto");
+                    int cant = cart.getInt("cantidad");
                     JOptionPane.showMessageDialog(null, nombre_prod);
-                    gbd.aumentarPC(nombre_prod);
+                    gbd.aumentarPC(nombre_prod, cant);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
