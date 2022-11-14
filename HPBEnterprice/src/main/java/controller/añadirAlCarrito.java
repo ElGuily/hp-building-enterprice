@@ -37,7 +37,7 @@ public class añadirAlCarrito extends HttpServlet{
             GestorBD gbd = new GestorBD();
             HttpSession ses = req.getSession();
             Enum_modelos m = null;
-            
+            int cant = 0;
             ResultSet pcs = gbd.obtenerPC(req.getParameter("botonAgregar"));
             JOptionPane.showMessageDialog(null, pcs);
             Object user1 = ses.getAttribute("user_emp");
@@ -50,8 +50,17 @@ public class añadirAlCarrito extends HttpServlet{
                     String modelo_pc = pcs.getString("modelo");
                     double precio = pcs.getDouble("precio");
                     int cat = pcs.getInt("id_categoria");
+                    ResultSet cantidad = gbd.comprobarCantidad(nombre, user);
+                    if(cantidad.next()){
+                        cant = cantidad.getInt("cant");
+                    }
                     
-                    gbd.registrarCarrito(nombre, user);
+                    if(cant==1){
+                        gbd.actualizarCantidadCarrito(nombre, user);
+                    }else{
+                        gbd.registrarCarrito(nombre, user);
+                    }
+                    
                     
                     
                 }

@@ -36,7 +36,7 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
-INSERT INTO `carrito` VALUES ('gamerX10','facunare',1);
+INSERT INTO `carrito` VALUES ('gamerX10','facunare',2),('OficinaPC','facundoare',1),('OficinaPC','facunare',2);
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,6 +63,23 @@ LOCK TABLES `categoria` WRITE;
 INSERT INTO `categoria` VALUES (1,'Oficina'),(2,'Gamer'),(3,'Diseño');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `borrarDspCat` BEFORE DELETE ON `categoria` FOR EACH ROW BEGIN
+	delete from pc where old.id_categoria = id_categoria;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cliente`
@@ -141,7 +158,7 @@ CREATE TABLE `pc` (
   `cant_vendido` int DEFAULT NULL,
   PRIMARY KEY (`id_pc`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +167,7 @@ CREATE TABLE `pc` (
 
 LOCK TABLES `pc` WRITE;
 /*!40000 ALTER TABLE `pc` DISABLE KEYS */;
-INSERT INTO `pc` VALUES (3,'gamerX10','ProDesk400',1,1000.00,2,0,0,1,1);
+INSERT INTO `pc` VALUES (3,'gamerX10','ProDesk400',1,1000.00,2,0,0,1,1),(4,'OficinaPC','ProOne',3,200.00,2,0,0,0,0);
 /*!40000 ALTER TABLE `pc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,6 +224,10 @@ LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'hpbe'
+--
 
 --
 -- Dumping routines for database 'hpbe'
@@ -274,10 +295,11 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarCantidadCarrito`(
-	in nombre varchar(50)
+	in nombre varchar(50),
+    in us varchar(100)
 )
 BEGIN
-	update carrito set cantidad = cantidad + 1 where producto = nombre;
+	update carrito set cantidad = cantidad + 1 where producto = nombre and usuario = us;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -322,6 +344,29 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `aumentarPC`(
 )
 BEGIN
 	update pc set cant_vendido = cant_vendido + 1 where nombre_pc = nombre;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `comprobarCantidad` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `comprobarCantidad`(
+	in nombre varchar(100),
+    in us varchar(100)
+
+)
+BEGIN
+	select cantidad as cant from carrito where producto = nombre and usuario = us;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -649,4 +694,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-14  9:11:54
+-- Dump completed on 2022-11-14 13:23:56
