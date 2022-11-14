@@ -307,5 +307,40 @@ public class GestorBD {
             JOptionPane.showMessageDialog(null, ex );
         }
     }
+    
+    public ResultSet PCmasVendida(){
+        
+        ResultSet pc = null;
+        
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call PCmasVendida()";
+            pc = this.stm.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, sql);            
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,  ex );
+        }
+        return pc;
+    }
+    
+    
+    
+    public void actualizarCantidadCarrito(String nombre){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call actualizarCantidadCarrito('"+nombre+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
+    
    
 }

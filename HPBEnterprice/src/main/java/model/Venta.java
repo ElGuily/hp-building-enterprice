@@ -65,4 +65,14 @@ public class Venta {
         
         return total;
     }
+
+    public ArrayList<PCs> getPCs() {
+        return PCs;
+    }
+
+    public void setPCs(ArrayList<PCs> PCs) {
+        this.PCs = PCs;
+    }
+    
+    
 }

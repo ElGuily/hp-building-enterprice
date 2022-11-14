@@ -33,25 +33,24 @@ public class login extends HttpServlet{
                 GestorBD gbd = new GestorBD();
                 HttpSession session = req.getSession();
                 if(gbd.loginUsuario(username_login, password_login)==1){
-                    if(username_login.equals("admin") && password_login.equals("admin")){
-                        req.setAttribute("admin", true);
-                    }else{
-                        req.setAttribute("admin", false);
-                    }
+                    
                     
                     Cliente user = new Cliente(username_login, password_login);
                     
                     session.setAttribute("user", user);
                     session.setAttribute("user_emp", username_login);
-                    session.setAttribute("passw", password_login);
-                    req.setAttribute("info", "logueado exitosamente");
+                    session.setAttribute("passw_emp", password_login);
                     session.setAttribute("activo", true);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                     
                     
                 }else if(gbd.loginEmpleado(username_login, password_login)==1){
+                    if(username_login.equals("admin") && password_login.equals("admin")){
+                        session.setAttribute("admin", true);
+                    }else{
+                        session.setAttribute("admin", false);
+                    }
                     session.setAttribute("empleado", true);
-                    req.setAttribute("info", "logueado exitosamente");
                     session.setAttribute("activo", true);
                     
                     Cliente user = new Cliente(username_login, password_login);

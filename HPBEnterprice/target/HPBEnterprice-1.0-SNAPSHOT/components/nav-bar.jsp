@@ -48,7 +48,12 @@
         <c:choose>
             <c:when test="${admin}">
                 <li class="li_admin">
-                    <a class="li_admin" href="login.jsp">Ver estadisticas</a>         
+                    <form action="estadisticas" method="POST">
+                        
+                        <button>
+                            Ver Estadisticas
+                        </button>
+                    </form>   
                     <a class="li_a" href="registrarEmpleado.jsp">Registrar empleado</a>
                 </li>    
                 

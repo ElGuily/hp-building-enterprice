@@ -55,6 +55,9 @@ public class estadisticas extends HttpServlet{
             } catch (SQLException ex) {
                 Logger.getLogger(estadisticas.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
+            
             req.getRequestDispatcher("estadisticasEmpleado.jsp").forward(req, res);
         }
         

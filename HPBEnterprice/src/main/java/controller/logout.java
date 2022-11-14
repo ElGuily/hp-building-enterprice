@@ -32,13 +32,14 @@ public class logout extends HttpServlet{
                 HttpSession session = req.getSession();
                 Cliente usu = (Cliente)session.getAttribute("user");
                 if (usu == null){
-                    JOptionPane.showMessageDialog(null, "aca");
+                    
                     req.getRequestDispatcher("index.jsp").forward(req, res);
                 }
                 session.removeAttribute("user");
                 session.setAttribute("activo", false);
                 session.setAttribute("admin",false);
                 session.setAttribute("empleado", false);
+                
                 req.getRequestDispatcher("index.jsp").forward(req, res);
                 
             }
