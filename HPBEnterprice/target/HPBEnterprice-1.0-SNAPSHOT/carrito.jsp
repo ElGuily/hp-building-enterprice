@@ -27,7 +27,7 @@
                 <div class="pc_div">
                     
                     <p>${carrito.nombre}</p>                    
-                    <p>${carrito.calcularPrecio()}</p>
+                    <p>${carrito.valor_PC}</p>
                     <form action="eliminarDelCarrito" method="POST">
                         <button value="${carrito.nombre}" name="deleteCartButton">
                             Eliminar

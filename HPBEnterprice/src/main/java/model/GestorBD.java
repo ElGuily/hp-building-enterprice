@@ -197,11 +197,11 @@ public class GestorBD {
         return pc;
     }
      
-     public void registrarCarrito(String nom, String usuario){
+     public void registrarCarrito(String nom, String usuario, double valor){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call registrarCarrito('"+nom+"', '"+usuario+"')";
+            String sql = "call registrarCarrito('"+nom+"', '"+usuario+"', "+valor+")";
             this.stm.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, sql);
         }catch(SQLException ex){
@@ -359,5 +359,20 @@ public class GestorBD {
         }
         return pc;
     }
+   public void actualizarPrecioCarrito(int cant, String nombre, String usuario){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call actualizarPrecioCarrito("+cant+", '"+nombre+"', '"+usuario+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex );
+        }
+    }
+   
+   
    
 }

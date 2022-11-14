@@ -60,7 +60,7 @@ public class Venta {
         double total = 0;
         
         for(PCs pc: this.PCs){
-            total += pc.calcularPrecio();
+            total += pc.valor_PC;
         }
         
         return total;

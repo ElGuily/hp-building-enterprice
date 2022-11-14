@@ -55,10 +55,11 @@ public class añadirAlCarrito extends HttpServlet{
                         cant = cantidad.getInt("cant");
                     }
                     
-                    if(cant==1){
+                    if(cant>=1){
                         gbd.actualizarCantidadCarrito(nombre, user);
+                        gbd.actualizarPrecioCarrito(cant +1, nombre, user);
                     }else{
-                        gbd.registrarCarrito(nombre, user);
+                        gbd.registrarCarrito(nombre, user, precio);
                     }
                     
                     
@@ -76,14 +77,13 @@ public class añadirAlCarrito extends HttpServlet{
             try {
                 while(rs.next()){
                     String nombreCompu = rs.getString("producto");
-                    
+                    double valorTotal = rs.getDouble("total");
                     ResultSet computadora = gbd.obtenerPC(nombreCompu);
                     
                     while(computadora.next()){
                             String nombre = computadora.getString("nombre_pc");
                             String modelo_pc = computadora.getString("modelo");
                             int cantImp = computadora.getInt("cant_comp_importados");
-                            double precio = computadora.getDouble("precio");
                             int cat =computadora.getInt("id_categoria");
                             int all_in_one = computadora.getInt("all_in_one");
                             int refri = computadora.getInt("refri_liquid");
@@ -105,19 +105,21 @@ public class añadirAlCarrito extends HttpServlet{
                                m = m.miniHPpro400;
                            }
                             if(cat==1){
-                                PCs pc_gamer = new PC_Gamer(nombre, precio, m, rgb, refri);
-                                pc_gamer.calcularPrecio();
+                                PCs pc_gamer = new PC_Gamer(nombre, valorTotal, m, rgb, refri);
+                              
                                 v.añadirPC(pc_gamer);
+                                JOptionPane.showMessageDialog(null, "Valor: "+ pc_gamer.getValor_PC());
+                                
                                 carrito.add(pc_gamer);
                                 
                             }else if(cat==2){
-                                PCs pc_diseño = new PC_Diseño(nombre, precio, m);
+                                PCs pc_diseño = new PC_Diseño(nombre, valorTotal, m);
                                 v.añadirPC(pc_diseño);
                                 carrito.add(pc_diseño);
                                 
                             }else if(cat==3){
-                                PCs pc_oficina = new PC_Oficina(nombre, precio, m, cantImp, all_in_one);
-                                pc_oficina.calcularPrecio();
+                                PCs pc_oficina = new PC_Oficina(nombre, valorTotal, m, cantImp, all_in_one);
+                             
                                 v.añadirPC(pc_oficina);
                                 carrito.add(pc_oficina);
                                 

@@ -80,24 +80,21 @@ public class comprarPC extends HttpServlet{
                             
                             
                             PCs gamer = new PC_Gamer(nombre, valor, m, imp, rgb, refri);
-                            double valorPC = gamer.calcularPrecio();
-                            gamer.setValor_PC(valorPC);
+                            
                             pc_gamer.add(gamer);
                             req.setAttribute("pc", pc_gamer);
   
                         }else if("2".equals(type1)){
                           
                             PCs diseño = new PC_Diseño(nombre, valor, m, imp);
-                            double valorPC = diseño.calcularPrecio();
-                            diseño.setValor_PC(valorPC);
+                            
                             pc_diseño.add(diseño);                         
                             req.setAttribute("pc", pc_diseño);
                             
                         }else if("3".equals(type1)){
                             
                             PCs oficina = new PC_Oficina(nombre, valor, m, imp, all);
-                            double valorPC = oficina.calcularPrecio();
-                            oficina.setValor_PC(valorPC);
+                          
                             pc_oficina.add(oficina);
                             
                             req.setAttribute("pc", pc_oficina);
