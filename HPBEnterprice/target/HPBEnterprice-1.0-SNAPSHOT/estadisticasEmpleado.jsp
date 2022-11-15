@@ -57,6 +57,10 @@
                             out.print("<div>");
                             out.print("<h1> Total de comisiones: "+ comisiones + "</h1>");
                             out.print("</div>");
+                            double totalCiber = gbd.calcularCiberMonday();
+                            out.print("<div>");
+                            out.print("<h1> Recaudado en el ciberMonday: "+ totalCiber + "</h1>");
+                            out.print("</div>");
                         %>
                     </c:when>
                 </c:choose>

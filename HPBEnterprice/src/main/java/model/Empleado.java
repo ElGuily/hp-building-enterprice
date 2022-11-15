@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,6 +52,7 @@ public class Empleado extends Persona {
     public String toString() {
         return "Pedidos: "+pedido.toString()+"\nFacturado: "+facturado;
     }
+
     
     
     

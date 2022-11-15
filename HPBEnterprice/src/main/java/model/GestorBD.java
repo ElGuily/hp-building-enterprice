@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+import java.util.Calendar;
+import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author ET36
@@ -19,21 +22,7 @@ public class GestorBD {
     Statement stm = null;
     private ArrayList<String> comandos = new ArrayList<>();
 
-    public boolean registrarCliente(Cliente c){
-        try{
-            this.conn = ConectarBD.abrir();
-            this.stm = this.conn.createStatement();
-            String sql = "call registrarCliente('"+c.getUsuario()+"','"+c.getEmail()+"', '"+c.getPassw()+"', "+c.getNombre()+")";
-            JOptionPane.showMessageDialog(null, sql);
-            this.stm.executeUpdate(sql);
-        }catch(SQLException e){
-            System.out.println("Error en la bd");
-            JOptionPane.showMessageDialog(null, e );
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
+    
     
 
     
@@ -403,11 +392,112 @@ public class GestorBD {
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,  ex );
+            JOptionPane.showMessageDialog(null,  "totalComision" +ex );
         }
         return totalComisiones;
     }
    
+   
+   public void registrarCliente(String email, String dni, String nombre, String direccion, String user){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call registrarCliente('"+email+"', '"+dni+"', '"+nombre+"', '"+direccion+"', '"+user+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "registrarCliente" +ex );
+        }
+    }
+   
+   public void registrarVenta(String empleado, String usuario, double total){
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String fecharda = calcularFecha();
+            String sql = "call registrarVenta('"+empleado+"', '"+usuario+"', "+total+", '"+fecharda+"')";
+            this.stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "RegistrarVenta" + ex );
+        }
+    }
+   
+   public double contarCliente(String nombre){
+        
+        double clientesTotales = 0;
+        
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call contarClientes('"+nombre+"')";
+            ResultSet cant = this.stm.executeQuery(sql);
+            if(cant.next()){
+                clientesTotales = cant.getDouble("cant");
+            }
+            JOptionPane.showMessageDialog(null, sql);            
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ContarCliente" + ex );
+        }
+        return clientesTotales;
+    }
+   
+   public double calcularCiberMonday(){
+        
+        double totalCiber = 0;
+        
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call calcularCiberMonday()";
+            ResultSet total = this.stm.executeQuery(sql);
+            if(total.next()){
+                totalCiber = total.getDouble("total");
+            }
+            JOptionPane.showMessageDialog(null, sql);            
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ContarCliente" + ex );
+        }
+        return totalCiber;
+    }
+   
+   public ResultSet obtenerVentas(String user){
+        ResultSet venta = null;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerVentas('"+user+"')";
+            venta = this.stm.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, sql);
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerEmp" + ex );
+        }
+        return venta;
+    }
+   
+    Calendar unaFecha;
+        public String calcularFecha() {
+            int numero = 0;
+            Random aleatorio;
+            aleatorio = new Random();
+
+            unaFecha = Calendar.getInstance();
+            unaFecha.set (2022, 12, aleatorio.nextInt(2)+1);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+           
+            return sdf.format(unaFecha.getTime());
+        }
+        
     
    
    

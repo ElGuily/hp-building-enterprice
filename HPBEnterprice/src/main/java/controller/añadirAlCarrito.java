@@ -141,8 +141,8 @@ public class añadirAlCarrito extends HttpServlet{
             gbd.actualizarComision(comision, nombrePC, user);
             ses.setAttribute("carrito", carrito);
             
-            
-            ses.setAttribute("total", v.calcularTotal());
+          
+            ses.setAttribute("total", v.calcularTotal(user));
             
             req.getRequestDispatcher("carrito.jsp").forward(req, res);
            

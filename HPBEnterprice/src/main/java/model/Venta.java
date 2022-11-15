@@ -17,13 +17,14 @@ public class Venta {
     Cliente cliente;
     Empleado empleado;
     ArrayList<PCs> PCs;
-    
-    public Venta(Cliente c, Empleado e){
+    private double total;
+    public Venta(Cliente c, Empleado e, double total){
         
         this.cliente = c;
         this.empleado = e;
         this.PCs = new ArrayList<PCs>();
         this.id_venta = ++this.nro_venta;
+        this.total = total;
     }
     
     public Venta(){
@@ -39,7 +40,7 @@ public class Venta {
         for(PCs pc: this.PCs){
             factura += pc.toString();
         }
-        factura += "Total: " + calcularTotal() + "\n";
+        
         factura += "----------------------------- \n";
         factura += "¡Gracias por su compra!";
         
@@ -58,13 +59,15 @@ public class Venta {
         
     }
     
-    public double calcularTotal(){
+    public double calcularTotal(String user){
         double total = 0;
-        
+        GestorBD gbd = new GestorBD();
         for(PCs pc: this.PCs){
             total += pc.valor_PC;
         }
-        
+        if(gbd.contarCliente(user)==1){
+            return total -= total*0.05;
+        }
         return total;
     }
 
@@ -75,6 +78,40 @@ public class Venta {
     public void setPCs(ArrayList<PCs> PCs) {
         this.PCs = PCs;
     }
+
+    public int getId_venta() {
+        return id_venta;
+    }
+
+    public void setId_venta(int id_venta) {
+        this.id_venta = id_venta;
+    }
+
+    public static int getNro_venta() {
+        return nro_venta;
+    }
+
+    public static void setNro_venta(int nro_venta) {
+        Venta.nro_venta = nro_venta;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+    
+    
     
     
 }

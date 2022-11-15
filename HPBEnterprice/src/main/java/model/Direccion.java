@@ -38,7 +38,7 @@ public class Direccion {
 
         @Override
         public String toString() {
-            return this.calle + this.numero + this.localidad;
+            return this.calle + " " + this.numero + " " + this.localidad;
 
     }
 }

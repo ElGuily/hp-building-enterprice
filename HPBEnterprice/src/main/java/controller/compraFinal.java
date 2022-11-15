@@ -21,9 +21,11 @@ import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.ConectarBD;
+import model.Direccion;
 import model.Empleado;
 import model.GestorBD;
 import model.PCs;
+import model.Persona;
 import model.Venta;
 
 /**
@@ -40,31 +42,43 @@ public class compraFinal extends HttpServlet{
             String password = (String)session.getAttribute("passw_emp");
             Cliente c = new Cliente(username, password);
             Random rd = new Random();
-        
-            String total1 = req.getParameter("botonComprar");
-        
-            double total = Double.parseDouble(total1);
+            String nombre_cliente = req.getParameter("nombre_cliente");
+            String email_cliente = req.getParameter("email_cliente");
+            String DNI_cliente = req.getParameter("DNI_cliente");
+            String localidad_cliente = req.getParameter("localidad_cliente");
+            String calle_cliente = req.getParameter("calle_cliente");
+            int altura_cliente = Integer.parseInt(req.getParameter("altura_cliente"));
+            Direccion direccion = new Direccion(calle_cliente, altura_cliente, localidad_cliente);
+            double total = Double.parseDouble(req.getParameter("botonComprar"));
+            String nombre_empleado = "";
+            String email_empleado = "";
             int emp = gbd.totalEmpleados();
             
             
+            gbd.registrarCliente(email_cliente, DNI_cliente, nombre_cliente, direccion.toString(), username);
+            
             int random = rd.nextInt(1, emp + 1);
-            Empleado e = null;
            
+           Empleado e = null;
             
             ResultSet empleado = gbd.obtenerEmpleadoAlAzar(random);
             try {
-                while(empleado.next()){
-                    String nombre = empleado.getString("nombre_empleado");
-                    String email = empleado.getString("email_empleado");
-                    e = new Empleado(nombre, email, total);
+                if(empleado.next()){
+                     
+                    nombre_empleado = empleado.getString("nombre_empleado");
+                    email_empleado = empleado.getString("email_empleado");
+                   
+                    
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            Venta venta = new Venta(c, e);
+             e = new Empleado(nombre_empleado, email_empleado, total);
+             JOptionPane.showMessageDialog(null, e.getNombre());
             
-            session.setAttribute("factura",  venta);
+            
+            
           
             gbd.actualizarFacturado(random, total);
             
@@ -79,6 +93,12 @@ public class compraFinal extends HttpServlet{
             } catch (SQLException ex) {
                 Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
             }
+           
+            Venta venta = new Venta(c, e, total);
+           
+           gbd.registrarVenta(nombre_empleado, username, total);
+           
+            session.setAttribute("factura",  venta);
            req.getRequestDispatcher("compraFinal.jsp").forward(req, res);
         }
     

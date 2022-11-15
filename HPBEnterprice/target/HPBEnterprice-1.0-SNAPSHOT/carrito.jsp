@@ -38,11 +38,14 @@
                     
             </c:forEach>
             <h1>Total de la compra: ${total}</h1>
-            <form action="compraFinal" method="POST">
-                <button name="botonComprar" value="${total}">
-                    Comprar
+            <a href="preCompra.jsp">
+                <button name="botonComprar">
+                    Siguiente
                 </button>
-            </form>
+                
+            </a>
+                
+            
             
         </main>
         

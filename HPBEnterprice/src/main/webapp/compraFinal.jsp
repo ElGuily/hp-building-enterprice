@@ -16,8 +16,10 @@
         
        <main class="main_signup">
            <h1>Ha finalizado la compra!!</h1>
-           <h2>Ticket: </h2>
-           <p>${factura}</p>
+           <p>${factura.id_venta}</p>
+           <p>${factura.empleado.nombre}</p>
+           <p>${factura.cliente.nombre}</p>
+           <p>${total}</p>
        </main>
     </body>
 </html>
