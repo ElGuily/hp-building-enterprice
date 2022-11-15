@@ -26,7 +26,7 @@ public class logout extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             try(PrintWriter out = res.getWriter()){
              
-               
+                //Cierra la sesion del usuario.
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
                 HttpSession session = req.getSession();

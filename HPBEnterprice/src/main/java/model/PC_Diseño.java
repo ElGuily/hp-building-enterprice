@@ -9,6 +9,7 @@ package model;
  * @author ET36
  */
 public class PC_Diseño extends PCs {
+    // La PC de diseño no tiene extras.
     public PC_Diseño(String nombre, double valor_PC, Enum_modelos modelo, int c_i) {
         super(nombre, valor_PC, modelo, c_i);
     }

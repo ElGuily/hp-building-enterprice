@@ -9,5 +9,7 @@ package model;
  * @author ET36
  */
 public interface Importable {
+    
+    //Permite calcular el valor agregado dependiendo la cantidad de componenetes importados
     public abstract double calcularImpuesto(double comision);
 }

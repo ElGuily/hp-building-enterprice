@@ -29,6 +29,8 @@ import model.GestorBD;
 
 public class estadisticas extends HttpServlet{
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+            
+           //Permite mostrarle a cada empleado sus estadisticas.
            HttpSession sesion = req.getSession();
            String nombre = "";
            int dni = 0;
@@ -51,7 +53,7 @@ public class estadisticas extends HttpServlet{
                 Empleado empleado = new Empleado(facturado, nombre, user, password, dni, email);
                 req.setAttribute("empleadoDatos", empleado);
                 
-                /* ESTO FUNCIONA -- HAY QUE HACER UN SELECT DE EMPLEADO Y DE AHI SACAR LOS DATOS*/
+                
             } catch (SQLException ex) {
                 Logger.getLogger(estadisticas.class.getName()).log(Level.SEVERE, null, ex);
             }

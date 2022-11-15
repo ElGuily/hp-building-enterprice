@@ -26,14 +26,19 @@ import model.GestorBD;
 public class login extends HttpServlet{
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             try(PrintWriter out = res.getWriter()){
+                
+                //Se obtienen los datos proporicionados en el formulario de inicio de sesion.
                 String username_login = req.getParameter("username-login");
                 String password_login = req.getParameter("password-login");
                 
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
                 HttpSession session = req.getSession();
+                
+                //Se comprueba que ese usuario existe comparando con los datos obtenidos.
                 if(gbd.loginUsuario(username_login, password_login)==1){
                     
+                    //Este se ejecuta si el usuario logueado es un cliente "normal"
                     
                     Cliente user = new Cliente(username_login, password_login);
                     
@@ -45,13 +50,15 @@ public class login extends HttpServlet{
                     
                     
                 }else if(gbd.loginEmpleado(username_login, password_login)==1){
+                    
+                    //Este se ejecuta si el usuario es registrado por el admin. Es decir un empleado.
                     if(username_login.equals("admin") && password_login.equals("admin")){
-                        session.setAttribute("admin", true);
+                        session.setAttribute("admin", true); //Guarda en una sesion que el usuario logueado es admin.
                     }else{
-                        session.setAttribute("admin", false);
+                        session.setAttribute("admin", false); 
                     }
-                    session.setAttribute("empleado", true);
-                    session.setAttribute("activo", true);
+                    session.setAttribute("empleado", true); //Guarda en una sesion que el usuario es un empleado.
+                    session.setAttribute("activo", true); //Guarda en la sesion que el usuario esta logueado.
                     
                     Cliente user = new Cliente(username_login, password_login);
                     session.setAttribute("user_emp", username_login);

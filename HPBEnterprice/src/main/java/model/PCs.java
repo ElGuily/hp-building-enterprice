@@ -8,11 +8,14 @@ package model;
  *
  * @author ET36
  */
+
+// Clase padre de las clases PC_Oficina, PC_Diseño, PC_Gamer
+
 public abstract class PCs implements Importable{
     private String nombre;
     double  valor_PC;
     private Enum_modelos modelo;
-    private int componentes_imp;
+    private int componentes_imp; // Permite almacenar la cantidad de productos importados que contiene la pc. Por los cuales se cobran impuestos.
     
     
     public PCs( String nombre, double valor_PC, Enum_modelos modelo, int componentes_imp) {

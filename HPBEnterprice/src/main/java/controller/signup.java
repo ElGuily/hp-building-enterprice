@@ -19,24 +19,27 @@ import model.ConectarBD;
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             try(PrintWriter out = res.getWriter()){
+                
+                //Se obtienen los datos del formulario de registro.
                 String username = req.getParameter("username");
                 String password = req.getParameter("password");
                 String password2 = req.getParameter("password2");
                 
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
-                JOptionPane.showMessageDialog(null, username + " " + password + " " + password2);
+                
+                //El usuario es creado si y solo si las dos contraseñas coinciden.
                 if(password.equals(password2)){
                     
                     Cliente usuario = new Cliente(username, password);
                     gbd.registrarUsuario(usuario);
-                    JOptionPane.showMessageDialog(null, "ERRO");
+                    
                     
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                     
                 }else{
                    
-                    JOptionPane.showMessageDialog(null, "ERRO");
+                    
                     req.setAttribute("error", "Las contraseñas no coinciden");
                   
                     req.getRequestDispatcher("/signup.jsp").forward(req, res);
@@ -50,7 +53,7 @@ import model.ConectarBD;
 
     /*
 
-    1. Aplicar interfaz
+    
 
 */
     

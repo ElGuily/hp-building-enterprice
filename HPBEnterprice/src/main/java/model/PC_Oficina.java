@@ -9,7 +9,7 @@ package model;
  * @author ET36
  */
 public class PC_Oficina extends PCs {
-    
+    // A la pc de oficina se le puede añadir la opcion de que la misma sea all_in_one, lo cual aumenta su valor.
     private int all_in_one;
 
     public PC_Oficina(String nombre, double valor_PC,  Enum_modelos modelo, int c_i, int all_in_one ) {

@@ -36,6 +36,7 @@ import model.Venta;
 
 public class compraFinal extends HttpServlet{
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+            //Efectua la compra
             HttpSession session = req.getSession();
             GestorBD gbd = new GestorBD();
             String username = (String)session.getAttribute("user_emp");
@@ -52,16 +53,16 @@ public class compraFinal extends HttpServlet{
             double total = Double.parseDouble(req.getParameter("botonComprar"));
             String nombre_empleado = "";
             String email_empleado = "";
-            int emp = gbd.totalEmpleados();
+            int emp = gbd.totalEmpleados(); //Permite obtener el total de empleado
             
             
             gbd.registrarCliente(email_cliente, DNI_cliente, nombre_cliente, direccion.toString(), username);
             
-            int random = rd.nextInt(1, emp + 1);
+            int random = rd.nextInt(1, emp + 1); //Dependiendo el total de empelados se ejecuta un random.
            
            Empleado e = null;
             
-            ResultSet empleado = gbd.obtenerEmpleadoAlAzar(random);
+            ResultSet empleado = gbd.obtenerEmpleadoAlAzar(random); //Obtiene el empelado aleatorio.
             try {
                 if(empleado.next()){
                      
@@ -80,7 +81,7 @@ public class compraFinal extends HttpServlet{
             
             
           
-            gbd.actualizarFacturado(random, total);
+            gbd.actualizarFacturado(random, total); //Actualiza lo ganado por el empleado.
             
            ResultSet cart = gbd.obtenerCarrito(username);
             try {
@@ -96,7 +97,7 @@ public class compraFinal extends HttpServlet{
            
             Venta venta = new Venta(c, e, total);
            
-           gbd.registrarVenta(nombre_empleado, username, total);
+           gbd.registrarVenta(nombre_empleado, username, total); //Registra la venta
            
             session.setAttribute("factura",  venta);
            req.getRequestDispatcher("compraFinal.jsp").forward(req, res);

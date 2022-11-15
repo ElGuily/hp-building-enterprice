@@ -2,15 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// Clase para almacenar los pedidos de los usuarios
 
-/**
- *
- * @author ET36
- */
+
 public class Venta {
     private int id_venta;
     private static int nro_venta;

@@ -24,7 +24,7 @@ public class GestorBD {
 
     
     
-
+    //Insertar dentro de la tabla usuario con el usuario y contraseña elegida en el signup.
     
     public void registrarUsuario(Cliente c){
         try{
@@ -32,7 +32,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call registrarUsuario('"+c.getUsuario()+"','"+c.getPassw()+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+            
         }catch(SQLException e){
             System.out.println("Error en la bd");
             
@@ -41,6 +41,7 @@ public class GestorBD {
         }
     }
     
+    // Funcion que permite obtener un usuario de acuerdo a lo especificado en el login. Este compara lo ingresado y devuelve 1 o 0.
     public int loginUsuario(String nombre, String passw){
          ResultSet rs = null;
          int valor = 0;
@@ -66,6 +67,7 @@ public class GestorBD {
         return valor;
     }
     
+    //Funcion que permite loguear un empleado de acuerdo a lo especificado en el login. Este compara lo ingresado y devuelve 1 o 0.
     public int loginEmpleado(String nombre, String passw){
          ResultSet rs = null;
          int valor = 0;
@@ -90,6 +92,9 @@ public class GestorBD {
          
         return valor;
     }
+
+    
+    //Permite ingresar un empleado.
     
     public void registrarEmpleado(Empleado e){
         try{
@@ -97,7 +102,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call registrarEmpleado('"+e.getUsuario()+"','"+e.getEmail()+"', '"+e.getPassw()+"', "+e.getDNI()+", '"+e.getNombre()+"', 0)";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+        
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -105,6 +110,8 @@ public class GestorBD {
         }
     }
     
+    
+    //Permite seleccionar todas las computadoras dependiendo la categoria (Diseño, gamer u oficina).
     public ResultSet verCompu(int type){
         ArrayList<PCs> pcs = new ArrayList<PCs>();
         ResultSet pc = null;
@@ -126,13 +133,14 @@ public class GestorBD {
       return pc;
     }
     
+    //Permite ingresare una computadora.
     public void registrarPC(String nom, String cat, double precio, String modelo, int imp, boolean rgb, boolean all_in_one, boolean refri){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call registrarPC('"+nom+"', '"+modelo+"', '"+cat+"', "+precio+", "+imp+", "+rgb+", "+all_in_one+","+refri+")";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+           
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -140,13 +148,14 @@ public class GestorBD {
         }
     }
     
+    //Permite eliminar una computadora del stock, presionando el boton eliminar.
     public void eliminarPC(String nombre){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call eliminarPC('"+nombre+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+          
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -154,6 +163,7 @@ public class GestorBD {
         }
     }
     
+    //Obtener empleado segun usuario y contraseña.
     public ResultSet obtenerEmpleado(String user, String passw){
         ResultSet emp = null;
         try{
@@ -161,7 +171,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call obtenerEmpleado('"+user+"', '"+passw+"')";
             emp = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);
+     
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -170,6 +180,7 @@ public class GestorBD {
         return emp;
     }
     
+    //Obtener empleado segun el nombre de la misma.
      public ResultSet obtenerPC(String nombre){
         ResultSet pc = null;
         try{
@@ -177,7 +188,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call obtenerPC('"+nombre+"')";
             pc = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);
+          
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -186,13 +197,14 @@ public class GestorBD {
         return pc;
     }
      
+     //Registrar en el carrito informacion de compra.
      public void registrarCarrito(String nom, String usuario, double valor, double comision){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call registrarCarrito('"+nom+"', '"+usuario+"', "+valor+", "+comision+")";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+           
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -200,6 +212,7 @@ public class GestorBD {
         }
     }
      
+     // Permite obtener informacion del carrito dependiendo el usuario.
      public ResultSet obtenerCarrito(String usuario){
         ResultSet pc = null;
         try{
@@ -207,7 +220,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call obtenerCarrito('"+usuario+"')";
             pc = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);
+      
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -216,6 +229,8 @@ public class GestorBD {
         return pc;
     }
   
+     
+     //Se obtiene un empleado aleatorio, para que el mismo sea el encargado de vender la mercaderia al cliente.
      public ResultSet obtenerEmpleadoAlAzar(int id){
         ResultSet pc = null;
         try{
@@ -223,7 +238,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call obtenerEmpleadoAlAzar("+id+")";
             pc = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);
+            
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -232,6 +247,7 @@ public class GestorBD {
         return pc;
     }
      
+     // Retorna cantidad total de empleados, para de esta forma, saber el maximo numero que se obtendra aleatoriamente en el store anterior.
     public int totalEmpleados(){
         int cantidad = 0;
         try{
@@ -239,7 +255,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call totalEmpleado()";
             ResultSet emp = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);
+        
             try {
                 while(emp.next()){
                     cantidad = emp.getInt("cant");
@@ -255,26 +271,29 @@ public class GestorBD {
         return cantidad;
     }
     
+    //Actualiza el facturado de un empleado
     public void actualizarFacturado(int id, double facturado){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call actualizarFacturado("+id+", "+facturado+")";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+      
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, ex );
         }
     }
+    
+    //Eliminar producto del carrito al tocar el boton eliminar.
      public void eliminarDelCarrito(String nombre){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call eliminarDelCarrito('"+nombre+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+     
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -283,13 +302,14 @@ public class GestorBD {
     }
    
      
+    // Aumentar la cantidad de pcs vendidas.
     public void aumentarPC(String nombre, int cant){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call aumentarPC('"+nombre+"', "+cant+")";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+       
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -297,6 +317,9 @@ public class GestorBD {
         }
     }
     
+    
+    
+    //Obtener la PC mas vendida.
     public ResultSet PCmasVendida(){
         
         ResultSet pc = null;
@@ -306,7 +329,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call PCmasVendida()";
             pc = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);            
+               
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -316,14 +339,14 @@ public class GestorBD {
     }
     
     
-    
+    //Aumenta la cantidad de una pc cuando se agrega mas de una vez la misma (Esto para que no se cree 2 veces el mismo producto en el carrito)
     public void actualizarCantidadCarrito(String nombre, String usuario){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call actualizarCantidadCarrito('"+nombre+"', '"+usuario+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+            
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -331,6 +354,7 @@ public class GestorBD {
         }
     }
     
+    //Permite comprobar la cantidad comprada de una PC.
    public ResultSet comprobarCantidad(String nombre, String usuario){
         
         ResultSet pc = null;
@@ -340,7 +364,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call comprobarCantidad('"+nombre+"', '"+usuario+"')";
             pc = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);            
+                   
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -348,19 +372,23 @@ public class GestorBD {
         }
         return pc;
     }
+   
+   //Actualiza de un producto en el carrito
    public void actualizarPrecioCarrito(int cant, String nombre, String usuario){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call actualizarPrecioCarrito("+cant+", '"+nombre+"', '"+usuario+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+          
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, ex );
         }
     }
+   
+   //Actualiza la comision a pagar.
    
    public void actualizarComision(double comision, String nombre, String usuario){
         try{
@@ -368,7 +396,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call actualizarComision("+comision+", '"+nombre+"', '"+usuario+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+         
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -376,6 +404,8 @@ public class GestorBD {
         }
     }
    
+   
+   //obtiene la suma de todas las comisiones.
    public double obtenerTotalComision(){
         
         double totalComisiones = 0;
@@ -388,7 +418,7 @@ public class GestorBD {
             if(pc.next()){
                 totalComisiones = pc.getDouble("total");
             }
-            JOptionPane.showMessageDialog(null, sql);            
+                   
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -397,21 +427,21 @@ public class GestorBD {
         return totalComisiones;
     }
    
-   
+   //Permite registrar un cliente
    public void registrarCliente(String email, String dni, String nombre, String direccion, String user){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String sql = "call registrarCliente('"+email+"', '"+dni+"', '"+nombre+"', '"+direccion+"', '"+user+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+     
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "registrarCliente" +ex );
         }
     }
-   
+   //Permite registrar una venta
    public void registrarVenta(String empleado, String usuario, double total){
         try{
             this.conn = ConectarBD.abrir();
@@ -419,13 +449,15 @@ public class GestorBD {
             String fecharda = calcularFecha();
             String sql = "call registrarVenta('"+empleado+"', '"+usuario+"', "+total+", '"+fecharda+"')";
             this.stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, sql);
+           
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "RegistrarVenta" + ex );
         }
     }
+   
+   //Obtener cantidad de compras hechas por un mismo cliente (Esto para comprobar si darle el 5% de descuento o no)
    
    public double contarCliente(String nombre){
         
@@ -439,7 +471,7 @@ public class GestorBD {
             if(cant.next()){
                 clientesTotales = cant.getDouble("cant");
             }
-            JOptionPane.showMessageDialog(null, sql);            
+               
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -448,6 +480,7 @@ public class GestorBD {
         return clientesTotales;
     }
    
+   //Calcula lo recaudado en el ciberMonday
    public double calcularCiberMonday(){
         
         double totalCiber = 0;
@@ -460,7 +493,7 @@ public class GestorBD {
             if(total.next()){
                 totalCiber = total.getDouble("total");
             }
-            JOptionPane.showMessageDialog(null, sql);            
+               
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -469,6 +502,7 @@ public class GestorBD {
         return totalCiber;
     }
    
+   //Selecciona el pedido de un usuario.
    public ResultSet obtenerVentas(String user){
         ResultSet venta = null;
         try{
@@ -476,7 +510,7 @@ public class GestorBD {
             this.stm = this.conn.createStatement();
             String sql = "call obtenerVentas('"+user+"')";
             venta = this.stm.executeQuery(sql);
-            JOptionPane.showMessageDialog(null, sql);
+            
         }catch(SQLException ex){
             System.out.println("Error en la bd");
             ex.printStackTrace();
@@ -485,18 +519,20 @@ public class GestorBD {
         return venta;
     }
    
+   
+   //Funcion (de java, no sql) que permite calcular la fecha para el ciberMonday.
     Calendar unaFecha;
-        public String calcularFecha() {
-            int numero = 0;
-            Random aleatorio;
-            aleatorio = new Random();
+    public String calcularFecha() {
+        int numero = 0;
+        Random aleatorio;
+        aleatorio = new Random();
 
-            unaFecha = Calendar.getInstance();
-            unaFecha.set (2022, 12, aleatorio.nextInt(2)+1);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-           
-            return sdf.format(unaFecha.getTime());
-        }
+        unaFecha = Calendar.getInstance();
+        unaFecha.set (2022, 12, aleatorio.nextInt(2)+1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        return sdf.format(unaFecha.getTime());
+    }
         
     
    

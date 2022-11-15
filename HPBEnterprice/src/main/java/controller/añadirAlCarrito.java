@@ -31,6 +31,8 @@ import model.*;
 
 public class añadirAlCarrito extends HttpServlet{
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+            //Agrega al carrito de usuario por cada PC seleccionada
+            //Se creo un trigger, que luego de ejecutarse la compra (Se almacena el pedido en tabla Ventas), todo el carrito de ese usuario se vacia.
             Venta v = new Venta();
             String nombrePC = "";
             ArrayList<PCs> carrito = new ArrayList<PCs>();
@@ -39,7 +41,7 @@ public class añadirAlCarrito extends HttpServlet{
             Enum_modelos m = null;
             int cant = 0;
             ResultSet pcs = gbd.obtenerPC(req.getParameter("botonAgregar"));
-            JOptionPane.showMessageDialog(null, pcs);
+            
             Object user1 = ses.getAttribute("user_emp");
             String user = String.valueOf(user1);
             int total = 0;
@@ -58,6 +60,7 @@ public class añadirAlCarrito extends HttpServlet{
                         cant = cantidad.getInt("cant");
                     }
                     
+                    //En el caso que esa PC ya exista en el carrito, en vez de crear otro producto, aumenta en 1 la cantidad del mismo. Asi como cambiar el precio por la cantidad que tenga.
                     if(cant>=1){
                         gbd.actualizarCantidadCarrito(nombre, user);
                         gbd.actualizarPrecioCarrito(cant +1, nombre, user);

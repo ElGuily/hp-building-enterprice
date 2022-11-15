@@ -1,6 +1,7 @@
 
 package model;
 
+// Clase padre de las clases Empleado y Usuario
 
 public class Persona {
     private String nombre;

@@ -31,6 +31,8 @@ import model.*;
 public class comprarPC extends HttpServlet{
     @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+            
+            //Permite filtrar dependiendo la categoria de productos seleccionado.
             ArrayList<PCs> pc_gamer = new ArrayList<PCs>();
             ArrayList<PCs> pc_diseño = new ArrayList<PCs>();
             ArrayList<PCs> pc_oficina = new ArrayList<PCs>();
@@ -39,7 +41,7 @@ public class comprarPC extends HttpServlet{
             
             try(PrintWriter out = res.getWriter()){
                 
-                String type1 = req.getParameter("q");
+                String type1 = req.getParameter("q"); //obtiene la categoria obtenida de la url
              
                 int type = Integer.parseInt(type1);
                

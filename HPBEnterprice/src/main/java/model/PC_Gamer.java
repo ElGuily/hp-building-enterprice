@@ -9,9 +9,11 @@ package model;
  * @author ET36
  */
 public class PC_Gamer extends PCs{
+    // A la pc gamer se le puede añadir la opcion de que la misma tenga RGB (luces) y refrigeracion liquida, lo cual aumenta su valor.
     private int RGB;
     private int refrigeracion_liquida;
 
+    
     public PC_Gamer(String nombre ,double valor_PC,  Enum_modelos modelo, int c_i,int RGB, int refrigeracion_liquida) {
         super(nombre, valor_PC, modelo, c_i);
         this.RGB = RGB;

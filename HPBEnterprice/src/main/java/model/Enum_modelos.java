@@ -9,6 +9,8 @@ package model;
  * @author ET36
  */
 public enum Enum_modelos {
+    //Modelos de PCs disponibles.
+    
     Elite600("Elite600"), ProOne("ProOne"), Elite800("Elite800"), ProDesk400("ProDesk400"), miniHPpro400("miniHPpro400"), HP2004("HP2004"); 
     String nombre_modelo;
 

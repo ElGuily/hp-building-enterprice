@@ -30,6 +30,9 @@ public class agregarPC extends HttpServlet{
   
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             try(PrintWriter out = res.getWriter()){
+                
+                //Obtiene los datos del formulario agregarPC el cual solo pueden usar los empleados.
+                //Obtiene tambien los agregados de cada PC.
                 double valor = 0;
                 boolean rgb = false;
                 boolean all = false;
@@ -76,17 +79,17 @@ public class agregarPC extends HttpServlet{
                 int imps = Integer.parseInt(comp_imp);
                 
                 if(cat.equals("1")){
-                    JOptionPane.showMessageDialog(null, "ENTRO DONDE TENIA QUE ENTRAR");
+                    
                     String rgb_1 = req.getParameter("rgb_opt");        
                     String refri_1 = req.getParameter("refri_opt");
-                    JOptionPane.showMessageDialog(null, rgb_1 + " "+ refri_1);
+                   
                     if(refri_1 != null){
-                        JOptionPane.showMessageDialog(null, "cagamo refri");
+                        
                         refri = true;
                         refri_class = 1;
                     }
                     if(rgb_1 != null){
-                        JOptionPane.showMessageDialog(null, "cagamo rgb");
+                  
                         rgb = true;
                         rgb_class = 1;
                     }
@@ -102,7 +105,7 @@ public class agregarPC extends HttpServlet{
                         all = true;
                         all_class = 1;
                     }
-                    JOptionPane.showMessageDialog(null, all);
+                 
                     PCs oficina = new PC_Oficina(nombre_pc, precio_pc, m, all_class);
                     valor = oficina.calcularPrecio();
                     oficina.setValor_PC(valor);

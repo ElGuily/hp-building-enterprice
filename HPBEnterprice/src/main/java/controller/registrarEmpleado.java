@@ -25,7 +25,7 @@ public class registrarEmpleado extends HttpServlet{
     @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             try(PrintWriter out = res.getWriter()){
-                
+                //Si ingresas con la cuenta de administrador se habilita la opcion de registrar empleados.
                 String nombre = req.getParameter("nombre");          
                 String email = req.getParameter("email");
                 String DNIold = req.getParameter("DNI");
@@ -33,7 +33,7 @@ public class registrarEmpleado extends HttpServlet{
                 String username = req.getParameter("username-emp");
                 String password = req.getParameter("password-emp");
                 String password2 = req.getParameter("password2-emp");
-                JOptionPane.showMessageDialog(null, nombre + " " + email + " " + DNI + " " + DNIold + " " + username + " "+ password + " "+ password2);
+               
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
                 

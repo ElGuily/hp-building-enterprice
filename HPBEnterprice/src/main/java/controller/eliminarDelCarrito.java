@@ -28,7 +28,7 @@ public class eliminarDelCarrito extends HttpServlet{
            ConectarBD cbd = new ConectarBD();
            GestorBD gbd = new GestorBD();
            
-           gbd.eliminarDelCarrito(pc);
+           gbd.eliminarDelCarrito(pc); //Ejecuta el store para eliminar producto del carrito.
          
            req.getRequestDispatcher("carrito.jsp").forward(req, res);
           

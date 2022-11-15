@@ -28,7 +28,7 @@ public class eliminarPC extends HttpServlet{
            ConectarBD cbd = new ConectarBD();
            GestorBD gbd = new GestorBD();
            
-           gbd.eliminarPC(pc);
+           gbd.eliminarPC(pc); //Ejecuta el store para eliminar la PC.
          
            req.getRequestDispatcher("index.jsp").forward(req, res);
           
