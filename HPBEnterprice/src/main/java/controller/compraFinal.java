@@ -95,11 +95,11 @@ public class compraFinal extends HttpServlet{
                 Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
             }
            
-            Venta venta = new Venta(c, e, total);
+           Venta venta = new Venta(c, e, total);
            
            gbd.registrarVenta(nombre_empleado, username, total); //Registra la venta
            
-            session.setAttribute("factura",  venta);
+           session.setAttribute("factura",  venta);
            req.getRequestDispatcher("compraFinal.jsp").forward(req, res);
         }
     

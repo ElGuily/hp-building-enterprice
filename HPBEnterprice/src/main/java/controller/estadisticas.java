@@ -41,7 +41,10 @@ public class estadisticas extends HttpServlet{
            String user = String.valueOf(user1);
            String password = String.valueOf(password1);
            GestorBD gbd = new GestorBD();
+           
            ResultSet emp = gbd.obtenerEmpleado(user, password);
+           
+           
             try {
                 while(emp.next()){
                    nombre =  emp.getString("nombre_empleado");

@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+.mainLogin {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mainLogin .boxcontent {
+  background: #c2c2c2;
+  -webkit-box-shadow: 0 0 5px #000;
+          box-shadow: 0 0 5px #000;
+  border-radius: 20px;
+  height: 600px;
+  width: 800px;
+  position: relative;
+}
+
+.mainLogin .boxcontent .wave {
+  -webkit-transition: .15s;
+  transition: .15s;
+  position: absolute;
+  bottom: 0;
+  border-radius: 0 0 20px 20px;
+  -webkit-filter: drop-shadow(0 0 5px #0051ff);
+          filter: drop-shadow(0 0 5px #0051ff);
+}
+
+.mainLogin .boxcontent .switch-button {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  right: 0;
+  border: none;
+  outline: none;
+  border-radius: 0 20px 20px 0;
+  background: transparent;
+  font-size: 75px;
+  color: #880000;
+  text-shadow: 0 0 5px red;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.mainLogin .boxcontent form.loginform {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: relative;
+  z-index: 5;
+  width: 400px;
+  height: 600px;
+  -webkit-box-shadow: 0 0 5px #000;
+          box-shadow: 0 0 5px #000;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 5%;
+}
+
+.mainLogin .boxcontent form.loginform.signup {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.mainLogin .boxcontent form.loginform.signup .title {
+  color: #880000;
+  text-shadow: 0 0 5px red;
+}
+
+.mainLogin .boxcontent form.loginform.signup .send {
+  background: #d30000;
+}
+
+.mainLogin .boxcontent form.loginform.signup .inputdiv label.onText {
+  background: red;
+}
+
+.mainLogin .boxcontent form.loginform .title {
+  text-transform: uppercase;
+  font-size: 90px;
+  color: #002b88;
+  text-shadow: 0 0 5px #0051ff;
+}
+
+.mainLogin .boxcontent form.loginform .inputs {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 50%;
+}
+
+.mainLogin .boxcontent form.loginform .inputdiv {
+  border-radius: 10px;
+  margin: 10px;
+  width: 80%;
+  height: 50px;
+  -webkit-box-shadow: 0 0 5px #000;
+          box-shadow: 0 0 5px #000;
+  background: white;
+  position: relative;
+}
+
+.mainLogin .boxcontent form.loginform .inputdiv input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.mainLogin .boxcontent form.loginform .inputdiv label {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 20px;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.mainLogin .boxcontent form.loginform .inputdiv label.onText {
+  top: 0;
+  background: #0051ff;
+  border: 2px solid #000;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  font-size: 10px;
+  color: white;
+  padding: 2px;
+}
+
+.mainLogin .boxcontent form.loginform .send {
+  margin-top: 20px;
+  width: 80%;
+  height: 10%;
+  font-size: 30px;
+  background: #0051ff;
+  color: white;
+  text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  outline: 2px solid #000;
+}
+
+.mainLogin .boxcontent form.loginform .send:hover {
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  font-size: 32px;
+  -webkit-box-shadow: 0 0 5px black, 0 0 5px #000;
+          box-shadow: 0 0 5px black, 0 0 5px #000;
+}
