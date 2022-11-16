@@ -1,18 +1,19 @@
 package model;
 
 import java.util.ArrayList;
-
+import javax.servlet.http.HttpSession;
 // Clase para almacenar los pedidos de los usuarios
 
 
 public class Venta {
     private int id_venta;
+    private static int nro_venta;
     Cliente cliente;
     Empleado empleado;
     ArrayList<PCs> PCs;
     private double total;
     public Venta(Cliente cliente, Empleado empleado, double total){
-        
+        this.id_venta = ++nro_venta;
         this.cliente = cliente;
         this.empleado = empleado;
         this.PCs = new ArrayList<PCs>();
@@ -58,7 +59,10 @@ public class Venta {
             total += pc.valor_PC;
         }
         if(gbd.contarCliente(user)==1){
-            return total -= total*0.05;
+            total -= total*0.05;
+            double totalConDescuento = total;
+            return totalConDescuento;
+            
         }
         return total;
     }

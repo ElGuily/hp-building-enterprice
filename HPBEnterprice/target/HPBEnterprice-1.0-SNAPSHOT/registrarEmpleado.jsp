@@ -4,6 +4,8 @@
     Author     : ET36
 --%>
 
+<%@page import="model.Empleado"%>
+<%@page import="model.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +15,7 @@
     </head>
     <body>
         <%@include file="components/nav-bar.jsp" %>
+        
         <main class="main_signup">
             
             <form action="registrarEmpleado" method="POST" class="form_signup">

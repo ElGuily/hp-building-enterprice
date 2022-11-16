@@ -32,6 +32,10 @@ public class Empleado extends Persona {
         
         
     }
+    
+    public Empleado(String usuario, String passw){
+        super(usuario, passw);
+    }
     public ArrayList<Venta> getPedido() {
         return pedido;
     }

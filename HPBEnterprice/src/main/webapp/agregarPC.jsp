@@ -4,6 +4,8 @@
     Author     : facun
 --%>
 
+<%@page import="model.Empleado"%>
+<%@page import="model.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,11 +16,12 @@
     </head>
     <body>
         <%@include file="components/nav-bar.jsp" %>
+        
         <main class="main_signup">
 
             <form action="agregarPC" method="POST" class="form_signup">
                
-               
+                
                 <label for="nombre-pc">Nombre PC: </label>
                 <input type="text" name="nombre-pc">
                 <label for="modelo-pc">Modelo PC: </label>               
@@ -50,7 +53,7 @@
                     <label for="refrigeracionliquida">Refrigeracion Liquida</label>
 
                 </div>
-                <input type="file" name="foto_pc">
+               
                 <label for="importados">Comp. Importados: </label>
                 <input type="number" name="importados">
                 
@@ -62,17 +65,17 @@
     
     <script>
         $('#categoria-select').on("change", () => {
-            if ($("#categoria-select").val() == "2") {
-                $(".option-oficina").removeClass("hidden")
-                $(".option-gamer").addClass("hidden")
-            }
             if ($("#categoria-select").val() == "1") {
+                $(".option-oficina").addClass("hidden")
                 $(".option-gamer").removeClass("hidden")
+            }
+            if ($("#categoria-select").val() == "2") {
+                $(".option-gamer").addClass("hidden")
                 $(".option-oficina").addClass("hidden")
             }
             if ($("#categoria-select").val() == "3") {
                 $(".option-gamer").addClass("hidden")
-                $(".option-oficina").addClass("hidden")
+                $(".option-oficina").removeClass("hidden")
             }
         })
     </script>

@@ -52,6 +52,7 @@ public class compraFinal extends HttpServlet{
             String calle_cliente = req.getParameter("calle_cliente");
             int altura_cliente = Integer.parseInt(req.getParameter("altura_cliente"));
             Direccion direccion = new Direccion(calle_cliente, altura_cliente, localidad_cliente);
+            session.setAttribute("direccion", direccion);
             double total = Double.parseDouble(req.getParameter("botonComprar"));
             String nombre_empleado = "";
             String email_empleado = "";
@@ -97,7 +98,7 @@ public class compraFinal extends HttpServlet{
             }
            
            Venta venta = new Venta(c, new Empleado(nombre_empleado, email_empleado, total), total);
-           JOptionPane.showMessageDialog(null,"No entiendo");
+      
            gbd.registrarVenta(nombre_empleado, username, total); //Registra la venta
            
             

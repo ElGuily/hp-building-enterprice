@@ -4,6 +4,7 @@
     Author     : facun
 --%>
 
+<%@page import="model.Cliente"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="controller.compraFinal"%>
 <%@page import="java.util.logging.Logger"%>
@@ -22,6 +23,7 @@
     </head>
     <body>
         <%@include file="components/nav-bar.jsp" %>
+        
         <main class="main_signup">
             <div>
                 

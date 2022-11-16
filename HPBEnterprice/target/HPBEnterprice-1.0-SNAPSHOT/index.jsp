@@ -55,7 +55,7 @@
                     </a>     
                         
                     <a href="${pageContext.request.contextPath}/comprarPC?q=3">
-                        <<div class="box">
+                        <div class="box">
                           <img src="images/oficina.png" alt="Oficina" class="img" />
 
                           <span class="span">Oficina</span>

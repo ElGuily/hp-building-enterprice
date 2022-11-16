@@ -520,6 +520,8 @@ public class GestorBD {
     }
    
    
+   
+   
    //Funcion (de java, no sql) que permite calcular la fecha para el ciberMonday.
     Calendar unaFecha;
     public String calcularFecha() {

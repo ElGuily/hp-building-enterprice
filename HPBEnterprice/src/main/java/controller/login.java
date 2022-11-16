@@ -60,10 +60,10 @@ public class login extends HttpServlet{
                     session.setAttribute("empleado", true); //Guarda en una sesion que el usuario es un empleado.
                     session.setAttribute("activo", true); //Guarda en la sesion que el usuario esta logueado.
                     
-                    Cliente user = new Cliente(username_login, password_login);
+                    Empleado user= new Empleado(username_login, password_login);
                     session.setAttribute("user_emp", username_login);
                     session.setAttribute("passw_emp", password_login);
-                    session.setAttribute("user", user);
+                    session.setAttribute("user_empleado", user);
                     req.getRequestDispatcher("/index.jsp").forward(req, res);
                 }else{
                     req.setAttribute("info", "El nombre de usuario o la contraseña son incorrectas");

@@ -19,9 +19,6 @@ public class PC_Diseño extends PCs {
     }
     
     public double calcularPrecio(){
-        if (this.valor_PC == 0){
-            this.valor_PC = 45000;
-        }
         return this.valor_PC;
     }
     

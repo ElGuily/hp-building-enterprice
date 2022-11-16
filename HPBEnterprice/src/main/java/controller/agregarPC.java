@@ -12,10 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
+import model.Cliente;
 import model.ConectarBD;
 import model.Enum_modelos;
 import model.GestorBD;
+import model.PC_Diseño;
 import model.PC_Gamer;
 import model.PC_Oficina;
 import model.PCs;
@@ -46,7 +49,8 @@ public class agregarPC extends HttpServlet{
                 int all_class = 0;
                 int refri_class= 0;
                 double comision = 0;
-                        
+                
+                
                 try{
                     precio_pc = Double.parseDouble(precio);
                 }catch(Exception e){
@@ -99,22 +103,25 @@ public class agregarPC extends HttpServlet{
                     gamer.setValor_PC(valor);
                     
                     
-                }else if(cat.equals("2")){
+                }else if(cat.equals("3")){
                     String all_1 = req.getParameter("all_in_one_opt");
                     if(all_1 != null){
                         all = true;
                         all_class = 1;
                     }
                  
-                    PCs oficina = new PC_Oficina(nombre_pc, precio_pc, m, all_class);
+                    PCs oficina = new PC_Oficina(nombre_pc, precio_pc, m, imps,  all_class);
                     valor = oficina.calcularPrecio();
                     oficina.setValor_PC(valor);
+                }else if(cat.equals("2")){
+                    PCs diseño = new PC_Diseño(nombre_pc, precio_pc, m);
+                    valor = diseño.calcularPrecio();
+                    diseño.setValor_PC(valor);
                 }
                
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
-                
-                
+           
                
                 gbd.registrarPC(nombre_pc, cat, valor, modelo_pc, imps, rgb, all, refri);
                 req.getRequestDispatcher("index.jsp").forward(req, res);

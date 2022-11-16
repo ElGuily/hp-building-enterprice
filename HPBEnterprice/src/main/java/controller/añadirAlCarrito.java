@@ -41,7 +41,7 @@ public class añadirAlCarrito extends HttpServlet{
             Enum_modelos m = null;
             int cant = 0;
             ResultSet pcs = gbd.obtenerPC(req.getParameter("botonAgregar"));
-            
+            double valorTotal = 0;
             Object user1 = ses.getAttribute("user_emp");
             String user = String.valueOf(user1);
             int total = 0;
@@ -64,6 +64,7 @@ public class añadirAlCarrito extends HttpServlet{
                     if(cant>=1){
                         gbd.actualizarCantidadCarrito(nombre, user);
                         gbd.actualizarPrecioCarrito(cant +1, nombre, user);
+                        
                     }else{
                         gbd.registrarCarrito(nombre, user, precio, comision);
                     }
@@ -83,7 +84,7 @@ public class añadirAlCarrito extends HttpServlet{
             try {
                 while(rs.next()){
                     String nombreCompu = rs.getString("producto");
-                    double valorTotal = rs.getDouble("total");
+                    valorTotal = rs.getDouble("total");
                     ResultSet computadora = gbd.obtenerPC(nombreCompu);
                     
                     while(computadora.next()){
@@ -142,10 +143,11 @@ public class añadirAlCarrito extends HttpServlet{
                 Logger.getLogger(añadirAlCarrito.class.getName()).log(Level.SEVERE, null, ex);
             }
             gbd.actualizarComision(comision, nombrePC, user);
-            ses.setAttribute("carrito", carrito);
-            
-          
-            ses.setAttribute("total", v.calcularTotal(user));
+            ses.setAttribute("carrito", v.getPCs());
+            JOptionPane.showMessageDialog(null, v.getPCs());
+            double totalPrecio = v.calcularTotal(user);
+           
+            ses.setAttribute("total", totalPrecio);
             
             req.getRequestDispatcher("carrito.jsp").forward(req, res);
            

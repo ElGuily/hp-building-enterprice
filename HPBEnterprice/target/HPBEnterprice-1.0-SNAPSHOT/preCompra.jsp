@@ -4,6 +4,7 @@
     Author     : facun
 --%>
 
+<%@page import="model.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,7 @@
     </head>
     <body>
         <%@include file="components/nav-bar.jsp" %>
+        
         <main class="main_signup">
              <form action="compraFinal" method="POST" class="form_signup">
                 <label for="nombre_cliente">Nombre: </label>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.ConectarBD;
+import model.Empleado;
 import model.GestorBD;
 /**
  *
@@ -31,11 +32,10 @@ public class logout extends HttpServlet{
                 GestorBD gbd = new GestorBD();
                 HttpSession session = req.getSession();
                 Cliente usu = (Cliente)session.getAttribute("user");
-                if (usu == null){
-                    
-                    req.getRequestDispatcher("index.jsp").forward(req, res);
-                }
+                Empleado emp = (Empleado)session.getAttribute("user_empleado");
+               
                 session.removeAttribute("user");
+                session.removeAttribute("user_empleado");
                 session.setAttribute("activo", false);
                 session.setAttribute("admin",false);
                 session.setAttribute("empleado", false);
