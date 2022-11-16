@@ -29,10 +29,10 @@
                     <form action="logout" method="POST">
                         <input type="submit" value="Logout" class="logout-button"/>
                         
-                        
+
                     </form>          
                     <form action="agregarAlCarrito" method="POST">
-                            <button>
+                            <button class="carrito-button">
                                 Ver carrito
                             </button>
                     </form>
@@ -40,9 +40,11 @@
             </c:when>
             <c:otherwise>
                 <li class="li_profile">
-                    <a class="li_a" href="login.jsp">LogIn</a>
-                    <a class="li_a" href="signup.jsp">SignUp</a>
-                </li>      
+                    <a class="li_a" href="login.jsp" style="
+                        background: rgb(0, 60, 255);">Log In</a>
+                    <a class="li_a" href="signup.jsp" style="
+                    background: rgb(255, 255, 255); color: black;">Sign Up</a>
+                </li>     
             </c:otherwise>
         </c:choose>
         <c:choose>
@@ -80,3 +82,57 @@
     </ul>
     
 </nav>
+<style>
+    .li_a{
+    font-size: 20px;
+    color: #fff;
+   
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    transition: transform ease .3s;
+    width: 50%;
+}
+
+
+.logout-button{
+    font-size: 20px;
+    color: #fff;
+   
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    border: none;
+    outline: none;
+    background: #f00;
+    width: 100px;
+    transition: transform ease .3s;
+}
+
+.logout-button:hover, .li_a:hover, .carrito-button:hover{
+    transform: scale(1.1);
+}
+.carrito-button{
+    
+    font-size: 20px;
+    color: #fff;
+    transition: transform ease .3s;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    border: none;
+    outline: none;
+    background: #096;
+    width: max-content;
+    cursor: pointer;
+}
+</style>

@@ -7,17 +7,15 @@ import java.util.ArrayList;
 
 public class Venta {
     private int id_venta;
-    private static int nro_venta;
     Cliente cliente;
     Empleado empleado;
     ArrayList<PCs> PCs;
     private double total;
-    public Venta(Cliente c, Empleado e, double total){
+    public Venta(Cliente cliente, Empleado empleado, double total){
         
-        this.cliente = c;
-        this.empleado = e;
+        this.cliente = cliente;
+        this.empleado = empleado;
         this.PCs = new ArrayList<PCs>();
-        this.id_venta = ++this.nro_venta;
         this.total = total;
     }
     
@@ -81,13 +79,6 @@ public class Venta {
         this.id_venta = id_venta;
     }
 
-    public static int getNro_venta() {
-        return nro_venta;
-    }
-
-    public static void setNro_venta(int nro_venta) {
-        Venta.nro_venta = nro_venta;
-    }
 
     public Cliente getCliente() {
         return cliente;

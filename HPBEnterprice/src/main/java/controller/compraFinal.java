@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,14 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-import model.Cliente;
-import model.ConectarBD;
-import model.Direccion;
-import model.Empleado;
-import model.GestorBD;
-import model.PCs;
-import model.Persona;
-import model.Venta;
+import model.*;
 
 /**
  *
@@ -35,7 +29,15 @@ import model.Venta;
 @WebServlet(name = "compraFinal", urlPatterns = ("/compraFinal"))
 
 public class compraFinal extends HttpServlet{
-        protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+
+    /**
+     *
+     * @param req
+     * @param res
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
             //Efectua la compra
             HttpSession session = req.getSession();
             GestorBD gbd = new GestorBD();
@@ -60,7 +62,7 @@ public class compraFinal extends HttpServlet{
             
             int random = rd.nextInt(1, emp + 1); //Dependiendo el total de empelados se ejecuta un random.
            
-           Empleado e = null;
+           
             
             ResultSet empleado = gbd.obtenerEmpleadoAlAzar(random); //Obtiene el empelado aleatorio.
             try {
@@ -75,8 +77,7 @@ public class compraFinal extends HttpServlet{
                 Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-             e = new Empleado(nombre_empleado, email_empleado, total);
-             JOptionPane.showMessageDialog(null, e.getNombre());
+         
             
             
             
@@ -95,10 +96,12 @@ public class compraFinal extends HttpServlet{
                 Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
             }
            
-           Venta venta = new Venta(c, e, total);
-           
+           Venta venta = new Venta(c, new Empleado(nombre_empleado, email_empleado, total), total);
+           JOptionPane.showMessageDialog(null,"No entiendo");
            gbd.registrarVenta(nombre_empleado, username, total); //Registra la venta
            
+            
+            
            session.setAttribute("factura",  venta);
            req.getRequestDispatcher("compraFinal.jsp").forward(req, res);
         }
