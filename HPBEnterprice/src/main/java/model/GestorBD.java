@@ -198,11 +198,12 @@ public class GestorBD {
     }
      
      //Registrar en el carrito informacion de compra.
-     public void registrarCarrito(String nom, String usuario, double valor, double comision){
+     public void registrarCarrito(int id, String nom, String usuario, double valor, double comision){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call registrarCarrito('"+nom+"', '"+usuario+"', "+valor+", "+comision+")";
+            String sql = "call registrarCarrito("+id+",'"+nom+"', '"+usuario+"', "+valor+", "+comision+")";
+            JOptionPane.showMessageDialog(null, sql);
             this.stm.executeUpdate(sql);
            
         }catch(SQLException ex){
@@ -443,12 +444,12 @@ public class GestorBD {
         }
     }
    //Permite registrar una venta
-   public void registrarVenta(String empleado, String usuario, double total, double comision){
+   public void registrarVenta(int id, String empleado, String usuario, double total, double comision){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String fecharda = calcularFecha();
-            String sql = "call registrarVenta('"+empleado+"', '"+usuario+"', "+total+", '"+fecharda+"', "+comision+")";
+            String sql = "call registrarVenta("+id+",'"+empleado+"', '"+usuario+"', "+total+", '"+fecharda+"', "+comision+")";
             this.stm.executeUpdate(sql);
            
         }catch(SQLException ex){
@@ -520,7 +521,7 @@ public class GestorBD {
         return venta;
     }
    
-
+//Retorno todas las comisiones sumadas extraidas desde la tabla ventas
    public double obtenerTotalComisionEnVenta(){
        double total = 0;
         ResultSet venta = null;
@@ -538,6 +539,26 @@ public class GestorBD {
             JOptionPane.showMessageDialog(null, "ObtenerEmp" + ex );
         }
         return total;
+    }
+   
+   //Obtiene el id de un usuario para asignarlo al carrito
+   public int obtenerIDdeUsuario(String user){
+        ResultSet usuario = null;
+        int id = 0;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerIDdeUsuario('"+user+"')";
+            usuario = this.stm.executeQuery(sql);
+            while(usuario.next()){
+                id = usuario.getInt("id_usuario");
+            }
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerEmp" + ex );
+        }
+        return id;
     }
    
    

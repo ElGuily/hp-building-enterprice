@@ -63,6 +63,7 @@ public class compraFinal extends HttpServlet{
             String DNI_empleado = "";
             String usuario_empleado = "";
             String passw_empleado = "";
+            int id_carrito = 0;
             int emp = gbd.totalEmpleados(); //Permite obtener el total de empleado
             
             
@@ -96,6 +97,7 @@ public class compraFinal extends HttpServlet{
                     int cant = cart.getInt("cantidad");
                     JOptionPane.showMessageDialog(null, nombre_prod);
                     gbd.aumentarPC(nombre_prod, cant);
+                    id_carrito = cart.getInt("id_carrito");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,7 +107,7 @@ public class compraFinal extends HttpServlet{
            double comisiones = gbd.obtenerTotalComision();           
            
           
-           gbd.registrarVenta(nombre_empleado, username, total, comisiones); //Registra la venta
+           gbd.registrarVenta(id_carrito, nombre_empleado, username, total, comisiones); //Registra la venta
            
            session.setAttribute("factura",  venta);
            req.getRequestDispatcher("compraFinal.jsp").forward(req, res);

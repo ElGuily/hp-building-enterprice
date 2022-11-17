@@ -63,7 +63,9 @@ public class añadirAlCarrito extends HttpServlet{
                         gbd.actualizarPrecioCarrito(cant +1, nombre, user);
                         
                     }else{
-                        gbd.registrarCarrito(nombre, user, precio, comision);
+                        int id = gbd.obtenerIDdeUsuario(user);
+                        JOptionPane.showMessageDialog(null, id);
+                        gbd.registrarCarrito(id, nombre, user, precio, comision);
                     }
                     
                     

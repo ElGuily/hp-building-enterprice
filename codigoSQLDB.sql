@@ -23,12 +23,14 @@ DROP TABLE IF EXISTS `carrito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carrito` (
+  `id_carrito` int(11) DEFAULT NULL,
   `producto` varchar(100) DEFAULT NULL,
   `usuario` varchar(100) DEFAULT NULL,
   `cantidad` int(11) DEFAULT '1',
   `total` float DEFAULT NULL,
   `comision` float DEFAULT NULL,
-  KEY `usuario` (`usuario`)
+  KEY `usuario` (`usuario`),
+  KEY `id_carrito` (`id_carrito`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +40,6 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
-INSERT INTO `carrito` VALUES ('officeprueba','facundoare',1,2611,800),('pcGamer2','facundoare',1,1700,800);
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +100,7 @@ CREATE TABLE `cliente` (
   `usuario` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   KEY `usuario` (`usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +109,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (89,'davidchajade@gmail.com','12312312','david','zamudio 4940 pueryrredon','chajafer'),(90,'arechaga.facundoet36@gmail.com','46701107','Facundo','14 de julio 1248 1248 ortuzar','chajafer'),(91,'arechaga.facundoet36@gmail.com','213123','Facundo','14 de julio 1248 12321 asdasd','admin'),(92,'arechaga.facundoet36@gmail.com','21312','Facundo','14 de julio 1248 1231 dsadas','facunare'),(93,'facundo.are@hotmail.com','12312','Laura','14 De Julio 123 dasd','facunare');
+INSERT INTO `cliente` VALUES (89,'davidchajade@gmail.com','12312312','david','zamudio 4940 pueryrredon','chajafer'),(90,'arechaga.facundoet36@gmail.com','46701107','Facundo','14 de julio 1248 1248 ortuzar','chajafer'),(91,'arechaga.facundoet36@gmail.com','213123','Facundo','14 de julio 1248 12321 asdasd','admin'),(92,'arechaga.facundoet36@gmail.com','21312','Facundo','14 de julio 1248 1231 dsadas','facunare'),(93,'facundo.are@hotmail.com','12312','Laura','14 De Julio 123 dasd','facunare'),(94,'facundo.are@hotmail.com','12312','Laura','14 De Julio 21312 dasda','facunare'),(95,'facundo.are@hotmail.com','12312','Laura','14 De Julio 21312 dasda','facunare'),(96,'facundo.are@hotmail.com','12312','Laura','14 De Julio 21312 dasda','facunare'),(97,'facundo.are@hotmail.com','12312','Laura','14 De Julio 21312 dasda','facunare');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,7 +138,7 @@ CREATE TABLE `empleado` (
 
 LOCK TABLES `empleado` WRITE;
 /*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
-INSERT INTO `empleado` VALUES (1,'facunare','arechaga.facundoet36@gmail.com','1234','46701107','facundo',275342.50),(2,'facundoare','arechaga.facundoet36@gmail.com','1234','46701107','facundo',439040.38),(3,'admin','admin@gmail.com','admin','45463655','admin',212364.80),(4,'chajafer','davidchajade@gmail.com','chajade','21312312','david',0.00);
+INSERT INTO `empleado` VALUES (1,'facunare','arechaga.facundoet36@gmail.com','1234','46701107','facundo',283964.50),(2,'facundoare','arechaga.facundoet36@gmail.com','1234','46701107','facundo',443351.38),(3,'admin','admin@gmail.com','admin','45463655','admin',216675.80),(4,'chajafer','davidchajade@gmail.com','chajade','21312312','david',0.00);
 /*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +171,7 @@ CREATE TABLE `pc` (
 
 LOCK TABLES `pc` WRITE;
 /*!40000 ALTER TABLE `pc` DISABLE KEYS */;
-INSERT INTO `pc` VALUES (56,'officeprueba','Elite600',1,2611.00,2,0,0,1,6),(59,'pcGamer2','Elite800',1,1700.00,2,0,0,1,0);
+INSERT INTO `pc` VALUES (56,'officeprueba','Elite600',1,2611.00,2,0,0,1,10),(59,'pcGamer2','Elite800',1,1700.00,2,0,0,1,4);
 /*!40000 ALTER TABLE `pc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,7 +187,7 @@ CREATE TABLE `usuario` (
   `nombre_usuario` varchar(30) DEFAULT NULL,
   `contraseña` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,6 +196,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (7,'facunare','1234');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -225,6 +227,7 @@ DROP TABLE IF EXISTS `ventas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ventas` (
   `ID_ventas` int(11) NOT NULL AUTO_INCREMENT,
+  `id_carrito` int(11) DEFAULT NULL,
   `empleado` varchar(100) DEFAULT NULL,
   `usuario` varchar(100) DEFAULT NULL,
   `precio_total` float(10,2) DEFAULT NULL,
@@ -233,7 +236,7 @@ CREATE TABLE `ventas` (
   PRIMARY KEY (`ID_ventas`),
   KEY `id_empleado` (`empleado`),
   KEY `id_cliente` (`usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,6 +245,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
+INSERT INTO `ventas` VALUES (98,7,'facundo','facunare',4311.00,'2023-01-02',1600.00);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -610,6 +614,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `obtenerIDdeUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenerIDdeUsuario`(
+	in nombre varchar(100)
+)
+BEGIN
+	select id_usuario from usuario where nombre_usuario = nombre;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `obtenerPC` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -745,6 +770,7 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarCarrito`(
+	in id int,
 	in nom varchar(100),
     in us varchar(100),
     in valor float(10,2),
@@ -752,7 +778,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarCarrito`(
 
 )
 BEGIN
-	insert into carrito values (nom, us, 1, valor, comision);
+	insert into carrito values (id, nom, us, 1, valor, comision);
     
 END ;;
 DELIMITER ;
@@ -874,14 +900,16 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVenta`(
+	in cart int,
 	in emp varchar(100),
+    
     in us varchar(100),
     in total float(10,2),
     in fecharda DATE,
     in comision float(10,2)
 )
 BEGIN
-	insert into ventas(empleado, usuario, precio_total, fecha, comisionTotal) values(emp, us, total, fecharda, comision);
+	insert into ventas(id_carrito, empleado, usuario, precio_total, fecha, comisionTotal) values(cart, emp, us, total, fecharda, comision);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -959,4 +987,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-17 19:12:05
+-- Dump completed on 2022-11-17 20:03:37
