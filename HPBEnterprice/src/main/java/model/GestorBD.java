@@ -100,7 +100,7 @@ public class GestorBD {
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call registrarEmpleado('"+e.getUsuario()+"','"+e.getEmail()+"', '"+e.getPassw()+"', "+e.getDNI()+", '"+e.getNombre()+"', 0)";
+            String sql = "call registrarEmpleado('"+e.getUsuario()+"','"+e.getEmail()+"', '"+e.getPassw()+"', '"+e.getDNI()+"', '"+e.getNombre()+"')";
             this.stm.executeUpdate(sql);
         
         }catch(SQLException ex){
@@ -112,14 +112,13 @@ public class GestorBD {
     
     
     //Permite seleccionar todas las computadoras dependiendo la categoria (Diseño, gamer u oficina).
-    public ResultSet verCompu(int type){
-        ArrayList<PCs> pcs = new ArrayList<PCs>();
+    public ResultSet obtenerPCporCategoria(int type){
         ResultSet pc = null;
         try{
             
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call verCompu("+type+");";
+            String sql = "call obtenerPCporCategoria("+type+");";
            pc = this.stm.executeQuery(sql);
 
            
@@ -134,7 +133,7 @@ public class GestorBD {
     }
     
     //Permite ingresare una computadora.
-    public void registrarPC(String nom, String cat, double precio, String modelo, int imp, boolean rgb, boolean all_in_one, boolean refri){
+    public void registrarPC(String nom, String cat, double precio, String modelo, int imp, int rgb, int all_in_one, int refri){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
@@ -147,6 +146,7 @@ public class GestorBD {
             JOptionPane.showMessageDialog(null, ex );
         }
     }
+    
     
     //Permite eliminar una computadora del stock, presionando el boton eliminar.
     public void eliminarPC(String nombre){
@@ -428,11 +428,12 @@ public class GestorBD {
     }
    
    //Permite registrar un cliente
-   public void registrarCliente(String email, String dni, String nombre, String direccion, String user){
+   
+   public void registrarCliente(Cliente c){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
-            String sql = "call registrarCliente('"+email+"', '"+dni+"', '"+nombre+"', '"+direccion+"', '"+user+"')";
+            String sql = "call registrarCliente('"+c.getEmail()+"', '"+c.getDNI()+"', '"+c.getNombre()+"', '"+c.getDireccion()+"', '"+c.getUsuario()+"')";
             this.stm.executeUpdate(sql);
      
         }catch(SQLException ex){
@@ -442,12 +443,12 @@ public class GestorBD {
         }
     }
    //Permite registrar una venta
-   public void registrarVenta(String empleado, String usuario, double total){
+   public void registrarVenta(String empleado, String usuario, double total, double comision){
         try{
             this.conn = ConectarBD.abrir();
             this.stm = this.conn.createStatement();
             String fecharda = calcularFecha();
-            String sql = "call registrarVenta('"+empleado+"', '"+usuario+"', "+total+", '"+fecharda+"')";
+            String sql = "call registrarVenta('"+empleado+"', '"+usuario+"', "+total+", '"+fecharda+"', "+comision+")";
             this.stm.executeUpdate(sql);
            
         }catch(SQLException ex){
@@ -519,6 +520,25 @@ public class GestorBD {
         return venta;
     }
    
+
+   public double obtenerTotalComisionEnVenta(){
+       double total = 0;
+        ResultSet venta = null;
+        try{
+            this.conn = ConectarBD.abrir();
+            this.stm = this.conn.createStatement();
+            String sql = "call obtenerTotalComisionEnVenta()";
+            venta = this.stm.executeQuery(sql);
+            while(venta.next()){
+                total = venta.getDouble("comision");
+            }
+        }catch(SQLException ex){
+            System.out.println("Error en la bd");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ObtenerEmp" + ex );
+        }
+        return total;
+    }
    
    
    

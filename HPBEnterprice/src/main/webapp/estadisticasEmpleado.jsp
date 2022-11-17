@@ -31,13 +31,14 @@
                 <p>${empleadoDatos.DNI}</p>
                 <p>${empleadoDatos.email}</p>
                 <p>${empleadoDatos.facturado}</p>
+              
             </div>
                 <c:choose>
                     <c:when test="${admin}">
                         <%
                             
                             GestorBD gbd = new GestorBD();
-                            
+                            HttpSession s = request.getSession();
                             int cant = 0;
                             String nom = "";
                             ResultSet masVendida = gbd.PCmasVendida();
@@ -55,15 +56,12 @@
                             out.print("<h1> Producto mas vendido: " + nom + "</h1>");
                             out.print("<h2> Cantidad:" + cant + "</h2>");
                             out.print("</div");
-                            double comisiones = gbd.obtenerTotalComision();
-                            out.print("<div>");
-                            out.print("<h1> Total de comisiones: "+ comisiones + "</h1>");
-                            out.print("</div>");
                             double totalCiber = gbd.calcularCiberMonday();
                             out.print("<div>");
                             out.print("<h1> Recaudado en el ciberMonday: "+ totalCiber + "</h1>");
                             out.print("</div>");
                         %>
+                        <c:out value="La comision a pagar total es: ${comision}"></c:out>
                     </c:when>
                 </c:choose>
             

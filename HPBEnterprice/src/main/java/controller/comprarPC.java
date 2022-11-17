@@ -48,7 +48,7 @@ public class comprarPC extends HttpServlet{
                 ConectarBD cbd = new ConectarBD();
                 GestorBD gbd = new GestorBD();
                 
-                ResultSet pc = gbd.verCompu(type);
+                ResultSet pc = gbd.obtenerPCporCategoria(type);
          
                 try{
             

@@ -20,10 +20,7 @@ public class PC_Gamer extends PCs{
         this.refrigeracion_liquida = refrigeracion_liquida;
     }
     
-    public PC_Gamer(String nombre, double valor_PC, Enum_modelos modelo, int c_i){
-        super(nombre, valor_PC, modelo, c_i);
-    }
-    
+   
     public PC_Gamer(String nombre,double valor_PC, Enum_modelos modelo, int RGB, int refrigeracion_liquida){
         super(nombre, valor_PC, modelo);
          this.RGB = RGB;

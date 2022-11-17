@@ -7,10 +7,10 @@ public class Persona {
     private String nombre;
     private String usuario;
     private String passw;
-    private int DNI;
+    private String DNI;
     private String email;
 
-    public Persona(String nombre, String usuario, String passw, int DNI, String email) {
+    public Persona(String nombre, String usuario, String passw, String DNI, String email) {
  
         this.nombre = nombre;
         this.usuario = usuario;
@@ -50,11 +50,11 @@ public class Persona {
         this.passw = passw;
     }
 
-    public int getDNI() {
+    public String getDNI() {
         return DNI;
     }
 
-    public void setDNI(int DNI) {
+    public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 

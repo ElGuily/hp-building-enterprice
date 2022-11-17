@@ -6,15 +6,12 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-import model.Cliente;
 import model.ConectarBD;
 import model.Enum_modelos;
 import model.GestorBD;
@@ -37,9 +34,6 @@ public class agregarPC extends HttpServlet{
                 //Obtiene los datos del formulario agregarPC el cual solo pueden usar los empleados.
                 //Obtiene tambien los agregados de cada PC.
                 double valor = 0;
-                boolean rgb = false;
-                boolean all = false;
-                boolean refri = false;
                 Enum_modelos m = null;
                 double precio_pc = 0;
                 String nombre_pc = req.getParameter("nombre-pc");
@@ -58,10 +52,11 @@ public class agregarPC extends HttpServlet{
                 }
                 
                 
-                String cat = req.getParameter("categoria-pc");
-                int cat1 = Integer.parseInt(cat);
-                String comp_imp = req.getParameter("importados");
-         
+                String cat = req.getParameter("categoria-pc");              
+                int imps = Integer.parseInt(req.getParameter("importados"));
+            
+                
+               
                 
                 if(m.Elite600.getNombre_modelo().equals(modelo_pc)){
                     m = m.Elite600;
@@ -76,11 +71,10 @@ public class agregarPC extends HttpServlet{
                 }else if(m.miniHPpro400.getNombre_modelo().equals(modelo_pc)){
                     m = m.miniHPpro400;
                 }
-              
-                    
                 
                 
-                int imps = Integer.parseInt(comp_imp);
+                
+               
                 
                 if(cat.equals("1")){
                     
@@ -88,13 +82,9 @@ public class agregarPC extends HttpServlet{
                     String refri_1 = req.getParameter("refri_opt");
                    
                     if(refri_1 != null){
-                        
-                        refri = true;
                         refri_class = 1;
                     }
-                    if(rgb_1 != null){
-                  
-                        rgb = true;
+                    if(rgb_1 != null){                 
                         rgb_class = 1;
                     }
                     
@@ -106,7 +96,6 @@ public class agregarPC extends HttpServlet{
                 }else if(cat.equals("3")){
                     String all_1 = req.getParameter("all_in_one_opt");
                     if(all_1 != null){
-                        all = true;
                         all_class = 1;
                     }
                  
@@ -123,7 +112,7 @@ public class agregarPC extends HttpServlet{
                 GestorBD gbd = new GestorBD();
            
                
-                gbd.registrarPC(nombre_pc, cat, valor, modelo_pc, imps, rgb, all, refri);
+                gbd.registrarPC(nombre_pc, cat, valor, modelo_pc, imps, rgb_class, all_class, refri_class);
                 req.getRequestDispatcher("index.jsp").forward(req, res);
                 
             }

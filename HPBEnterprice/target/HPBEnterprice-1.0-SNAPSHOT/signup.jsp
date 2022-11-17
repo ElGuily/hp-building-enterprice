@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <button class="send" name="Login">Ingresar</button>
-                    <p>${info}</p>
+                    <p>${error}</p>
                 </form>
                 <button class="switch-button">Sign Up</button>
                 <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

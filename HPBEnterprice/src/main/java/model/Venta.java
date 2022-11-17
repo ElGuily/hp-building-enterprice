@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import javax.servlet.http.HttpSession;
+
 // Clase para almacenar los pedidos de los usuarios
 
 
@@ -12,6 +12,7 @@ public class Venta {
     Empleado empleado;
     ArrayList<PCs> PCs;
     private double total;
+    
     public Venta(Cliente cliente, Empleado empleado, double total){
         this.id_venta = ++nro_venta;
         this.cliente = cliente;

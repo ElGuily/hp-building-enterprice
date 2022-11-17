@@ -5,7 +5,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-import model.ConectarBD;
 import model.Empleado;
 import model.GestorBD;
 
@@ -33,13 +31,11 @@ public class estadisticas extends HttpServlet{
            //Permite mostrarle a cada empleado sus estadisticas.
            HttpSession sesion = req.getSession();
            String nombre = "";
-           int dni = 0;
+           String dni = "";
            String email = "";
-           Object user1 = sesion.getAttribute("user_emp");
-           Object password1 = sesion.getAttribute("passw_emp");
+           String user = String.valueOf(sesion.getAttribute("user_emp"));
+           String password = String.valueOf(sesion.getAttribute("passw_emp"));
            double facturado = 0;
-           String user = String.valueOf(user1);
-           String password = String.valueOf(password1);
            GestorBD gbd = new GestorBD();
            
            ResultSet emp = gbd.obtenerEmpleado(user, password);
@@ -48,7 +44,7 @@ public class estadisticas extends HttpServlet{
             try {
                 while(emp.next()){
                    nombre =  emp.getString("nombre_empleado");
-                   dni = emp.getInt("DNI_empleado");
+                   dni = emp.getString("DNI_empleado");
                    email = emp.getString("email_empleado");
                    facturado = emp.getDouble("facturado");
                 }
@@ -61,7 +57,9 @@ public class estadisticas extends HttpServlet{
                 Logger.getLogger(estadisticas.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            
+            double totalComision = gbd.obtenerTotalComisionEnVenta();    
+           JOptionPane.showMessageDialog(null, "Comision: "+ totalComision);
+           req.setAttribute("comision", totalComision);
             
             req.getRequestDispatcher("estadisticasEmpleado.jsp").forward(req, res);
         }

@@ -4,6 +4,7 @@
  */
 package model;
 
+
 /**
  *
  * @author ET36
@@ -27,19 +28,21 @@ public enum Enum_modelos {
     }
     
     public Enum_modelos obtener_modelo(String modelo_pc){
+     
         Enum_modelos m = null;
-        if(m.Elite600.getNombre_modelo().equals(modelo_pc)){
-            m = m.Elite600;
-       }else if(m.Elite800.getNombre_modelo().equals(modelo_pc)){
-            m = m.Elite800;
-       }else if(m.HP2004.getNombre_modelo().equals(modelo_pc)){
-            m = m.HP2004;
-       }else if(m.ProDesk400.getNombre_modelo().equals(modelo_pc)){
-            m = m.ProDesk400;
-       }else if(m.ProOne.getNombre_modelo().equals(modelo_pc)){
-            m = m.ProOne;
-       }else if(m.miniHPpro400.getNombre_modelo().equals(modelo_pc)){
-           m = m.miniHPpro400;
+       
+        if(Elite600.equals(modelo_pc)){
+            m = Elite600;
+       }else if(Elite800.equals(modelo_pc)){
+            m = Elite800;
+       }else if(HP2004.equals(modelo_pc)){
+            m = HP2004;
+       }else if(ProDesk400.equals(modelo_pc)){
+            m = ProDesk400;
+       }else if(ProOne.equals(modelo_pc)){
+            m = ProOne;
+       }else if(miniHPpro400.equals(modelo_pc)){
+           m = miniHPpro400;
        }
         return m;
     }

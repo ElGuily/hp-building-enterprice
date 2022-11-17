@@ -25,12 +25,6 @@ public abstract class PCs implements Importable{
         this.componentes_imp = componentes_imp;
     }
 
-    public PCs(double valor_PC, int componentes_imp) {
-        
-        this.valor_PC = valor_PC;
-        this.componentes_imp = componentes_imp;
-    } 
-
     public PCs(String nombre, double valor_PC, Enum_modelos modelo) {
         this.modelo = modelo;
         this.valor_PC = valor_PC;

@@ -17,13 +17,9 @@ public class PC_Oficina extends PCs {
         this.all_in_one = all_in_one;
     }
     
-    public PC_Oficina(String nombre, double valor_PC, Enum_modelos modelo, int c_i){
-        super(nombre, valor_PC, modelo, c_i);
-    }
+  
     
-    public PC_Oficina(String nombre,double valor_PC, Enum_modelos modelo ){
-        super(nombre, valor_PC, modelo);
-    }
+    
     @Override
     public double calcularPrecio() {
         if(this.all_in_one==1){

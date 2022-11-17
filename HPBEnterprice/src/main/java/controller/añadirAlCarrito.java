@@ -5,11 +5,9 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-import model.ConectarBD;
 import model.*;
 
 
@@ -34,20 +31,20 @@ public class añadirAlCarrito extends HttpServlet{
             //Agrega al carrito de usuario por cada PC seleccionada
             //Se creo un trigger, que luego de ejecutarse la compra (Se almacena el pedido en tabla Ventas), todo el carrito de ese usuario se vacia.
             Venta v = new Venta();
-            String nombrePC = "";
-            ArrayList<PCs> carrito = new ArrayList<PCs>();
+            String nombrePC = "";        
             GestorBD gbd = new GestorBD();
             HttpSession ses = req.getSession();
             Enum_modelos m = null;
             int cant = 0;
-            ResultSet pcs = gbd.obtenerPC(req.getParameter("botonAgregar"));
+           
             double valorTotal = 0;
-            Object user1 = ses.getAttribute("user_emp");
-            String user = String.valueOf(user1);
+            String user = String.valueOf(ses.getAttribute("user_emp"));
+            
             int total = 0;
             double comision = 0;
             
             
+            ResultSet pcs = gbd.obtenerPC(req.getParameter("botonAgregar"));
             if(pcs != null){
                 try {
                 while(pcs.next()){
@@ -111,29 +108,29 @@ public class añadirAlCarrito extends HttpServlet{
                            }else if(m.miniHPpro400.getNombre_modelo().equals(modelo_pc)){
                                m = m.miniHPpro400;
                            }
+                            
+                          
                             if(cat==1){
-                                PCs pc_gamer = new PC_Gamer(nombrePC, valorTotal, m, cantImp, rgb, refri);
-                              
+                                PCs pc_gamer = new PC_Gamer(nombrePC, valorTotal, m, cantImp, rgb, refri);                         
                                 
-                                comision = pc_gamer.calcularImpuesto(comision);
-                                JOptionPane.showMessageDialog(null, comision);
+                                comision = pc_gamer.calcularImpuesto(comision);       
+                                gbd.actualizarComision(comision, nombrePC, user);
                                 v.añadirPC(pc_gamer);
-                                JOptionPane.showMessageDialog(null, "Valor: "+ pc_gamer.getValor_PC());
-                                
-                                carrito.add(pc_gamer);
+                              
                                 
                             }else if(cat==2){
                                 PCs pc_diseño = new PC_Diseño(nombrePC, valorTotal, m, cantImp);
                                 comision = pc_diseño.calcularImpuesto(comision);
+                                gbd.actualizarComision(comision, nombrePC, user);
                                 v.añadirPC(pc_diseño);
-                                carrito.add(pc_diseño);
+                           
                                 
                             }else if(cat==3){
                                 PCs pc_oficina = new PC_Oficina(nombrePC, valorTotal, m, cantImp, all_in_one);
                                 comision = pc_oficina.calcularImpuesto(comision);
-                             
+                                gbd.actualizarComision(comision, nombrePC, user);
                                 v.añadirPC(pc_oficina);
-                                carrito.add(pc_oficina);
+                        
                                 
                             }
                         
@@ -142,13 +139,10 @@ public class añadirAlCarrito extends HttpServlet{
             } catch (SQLException ex) {
                 Logger.getLogger(añadirAlCarrito.class.getName()).log(Level.SEVERE, null, ex);
             }
-            gbd.actualizarComision(comision, nombrePC, user);
-            ses.setAttribute("carrito", v.getPCs());
-            JOptionPane.showMessageDialog(null, v.getPCs());
-            double totalPrecio = v.calcularTotal(user);
-           
-            ses.setAttribute("total", totalPrecio);
             
+            
+            ses.setAttribute("carrito", v.getPCs());       
+            ses.setAttribute("total", v.calcularTotal(user));  
             req.getRequestDispatcher("carrito.jsp").forward(req, res);
            
         }

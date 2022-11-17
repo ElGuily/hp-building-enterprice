@@ -28,8 +28,7 @@ public class registrarEmpleado extends HttpServlet{
                 //Si ingresas con la cuenta de administrador se habilita la opcion de registrar empleados.
                 String nombre = req.getParameter("nombre");          
                 String email = req.getParameter("email");
-                String DNIold = req.getParameter("DNI");
-                int DNI = Integer.parseInt(DNIold);
+                String DNI = req.getParameter("DNI");
                 String username = req.getParameter("username-emp");
                 String password = req.getParameter("password-emp");
                 String password2 = req.getParameter("password2-emp");
@@ -38,7 +37,7 @@ public class registrarEmpleado extends HttpServlet{
                 GestorBD gbd = new GestorBD();
                 
                 if(password.equals(password2)){      
-                    Empleado empleado = new Empleado(nombre, username, password, DNI, email);
+                    Empleado empleado = new Empleado(0, nombre, username, password, DNI, email);
                     gbd.registrarEmpleado(empleado);
                     
                     
@@ -50,7 +49,7 @@ public class registrarEmpleado extends HttpServlet{
                     JOptionPane.showMessageDialog(null, "ERRO");
                     req.setAttribute("error", "Las contraseñas no coinciden");
                   
-                    req.getRequestDispatcher("/signup.jsp").forward(req, res);
+                    req.getRequestDispatcher("/registrarEmpleado.jsp").forward(req, res);
                 }
                 
   

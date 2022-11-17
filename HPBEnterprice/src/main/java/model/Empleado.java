@@ -16,26 +16,17 @@ public class Empleado extends Persona {
     private ArrayList<Venta> pedido;
     private double facturado;
 
-    public Empleado( double facturado, String nombre, String usuario, String passw, int DNI, String email) {
+    public Empleado( double facturado, String nombre, String usuario, String passw, String DNI, String email) {
         super(nombre, usuario, passw, DNI, email);
         
         this.facturado = facturado;
     }
     
-    public Empleado(String nombre, String usuario, String passw, int DNI, String email){
-         super(nombre, usuario, passw, DNI, email);
-    }
-    public Empleado(String nombre,String email, double facturado){
-        super(nombre, email);
 
-        this.facturado = facturado;
-        
-        
-    }
-    
     public Empleado(String usuario, String passw){
         super(usuario, passw);
     }
+    
     public ArrayList<Venta> getPedido() {
         return pedido;
     }
