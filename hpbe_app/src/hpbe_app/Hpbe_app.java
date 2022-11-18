@@ -9,17 +9,30 @@ import java.util.logging.Logger;
 
 public class Hpbe_app {
 
+    
+    // Esta app utilice todas las clases de nuestra pagina web 
     public static void main(String[] args) {
+        // Inicializo todas las variables que vos a utilizar
             String modelos = null;
             Enum_modelos m = null;
+            String nombre_pc = "";
+            int cantidad = 0;
+            double precio = 0;
+            int categoria = 0;
+            int rgb = 0;
+            int c_i = 0;
+            int all_in_one = 0;
+            int refri_liquid = 0;
+            
             GestorBD bd = new GestorBD();
             Venta venta = new Venta();
+            
             Scanner sc = new Scanner(System.in);
             System.out.println("Registrar[1] Login[2] Cerrar[0]");
             int opc = 1;
             while(opc >=0 || opc <=2){
                 opc = sc.nextInt();
-                switch(opc){
+                switch(opc){ //Simple Switch para decidir si se quiere registrar, se quiere logear o Cerrar.
                     case 1:
                         System.out.println("Ingrese su nombre: ");
                         String n = sc.next();
@@ -32,14 +45,14 @@ public class Hpbe_app {
                         System.out.println("Ingrese su email: ");
                         String e = sc.next();
                         Empleado empleado = new Empleado(n, u, p, d, e);
-                        bd.registrarEmpleado(empleado);
+                        bd.registrarEmpleado(empleado); // Metodo para registrar al empleado en la Base de Datos
                         break;
                     case 2:
                         System.out.println("Ingrese su usuario");
                         u = sc.next();
                         System.out.println("Ingrese su contraseña: ");
                         p = sc.next();
-                        bd.loginEmpleado(u, p);
+                        bd.loginEmpleado(u, p); // Metodo para logear con ayuda de la Base de Datos
                         break;
                     case 0:
                         System.out.println("Hasta luego!!");
@@ -51,16 +64,8 @@ public class Hpbe_app {
             }
             System.out.println("Ingrese el nombre del cliente al que le hara la factura: ");
             String cliente = sc.next();
-            String nombre_pc = "";
-            int cantidad = 0;
-            double precio = 0;
-            int categoria = 0;
-            int rgb = 0;
-            int c_i = 0;
-            int all_in_one = 0;
-            int refri_liquid = 0;
             
-            ResultSet tabla_pc = bd.obtenerPC(nombre_pc);
+            ResultSet tabla_pc = bd.obtenerPC(nombre_pc); //Recorro toda la tabla PC para ir añadiendolo al array de pcs en Venta
             try {
                 while(tabla_pc.next()){
                 nombre_pc = tabla_pc.getString("nombre_pc");
@@ -72,7 +77,7 @@ public class Hpbe_app {
                 all_in_one = tabla_pc.getInt("all_in_one");
                 refri_liquid = tabla_pc.getInt("refri_liquid");
                 
-                switch(categoria){
+                switch(categoria){ // Este switch sirve para determinar que categoria de PC es dependiendo de un campo que esta en la Base de Datos
                 case 1:
                     PC_Oficina pc_Oficina = new PC_Oficina(nombre_pc, precio, m.obtener_modelo(modelos), c_i, all_in_one);
                     precio = pc_Oficina.calcularPrecio();
@@ -92,6 +97,6 @@ public class Hpbe_app {
             }
             
             
-            venta.emitirFactura();
+            System.out.println(venta.emitirFactura());
     }
 }
