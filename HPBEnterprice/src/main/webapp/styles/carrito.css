@@ -1,0 +1,110 @@
+/* -----------GLOBALS-----------*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+:root {
+  --color: #53BCFE;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins';
+}
+
+.main_carrito {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+
+      grid-template-columns: repeat(3, 300px);
+  grid-auto-rows: 200px;
+  height: 100vh;
+  overflow-y: scroll;
+  gap: 20px;
+}
+
+.main_carrito .next-carrito {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 20px;
+  -webkit-box-shadow: 0 0 5px;
+          box-shadow: 0 0 5px;
+  padding: 10px;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main_carrito .next-carrito h1 {
+  font-size: 20px;
+}
+
+.main_carrito .next-carrito a button {
+  background: #00ff62;
+  font-size: 20px;
+  color: white;
+  text-shadow: 0 0 5px #000;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.main_carrito .next-carrito a button:hover {
+  -webkit-box-shadow: 0 0 5px #00ff62;
+          box-shadow: 0 0 5px #00ff62;
+  cursor: pointer;
+}
+
+.main_carrito .pcbox_carrito {
+  -webkit-box-shadow: 0 0 5px #000;
+          box-shadow: 0 0 5px #000;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 20px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.main_carrito .pcbox_carrito .pcbox_precio span {
+  color: green;
+}
+
+.main_carrito .pcbox_carrito form button {
+  width: 100%;
+  font-size: 25px;
+  background: #db0606;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.main_carrito .pcbox_carrito form button:hover {
+  -webkit-box-shadow: 0 0 5px #db0606;
+          box-shadow: 0 0 5px #db0606;
+  cursor: pointer;
+}

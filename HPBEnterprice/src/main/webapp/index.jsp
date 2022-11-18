@@ -36,7 +36,7 @@
               <div class="postLanding__cajas">
                  
                   
-                    <a href="${pageContext.request.contextPath}/comprarPC?q=1">
+                    <a href="${pageContext.request.contextPath}/comprarPC?q=1" style="text-decoration:none;">
                         <div class="box">
                           <img src="images/gamer.png" alt="Gamer"  class="img" />
 
@@ -45,7 +45,7 @@
                         </div>
                     </a>
                       
-                   <a href="${pageContext.request.contextPath}/comprarPC?q=2">
+                   <a href="${pageContext.request.contextPath}/comprarPC?q=2" style="text-decoration:none;"> 
                         <div class="box">
                           <img src="images/diseño.png" alt="Diseño" class="img" />
 
@@ -54,7 +54,7 @@
                         </div>
                     </a>     
                         
-                    <a href="${pageContext.request.contextPath}/comprarPC?q=3">
+                    <a href="${pageContext.request.contextPath}/comprarPC?q=3" style="text-decoration:none;">
                         <div class="box">
                           <img src="images/oficina.png" alt="Oficina" class="img" />
 
