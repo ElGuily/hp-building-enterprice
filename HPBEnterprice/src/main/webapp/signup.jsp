@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Sign Up - HPBE</title>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
         <link rel="stylesheet" href="styles/login.css"/>
     </head>

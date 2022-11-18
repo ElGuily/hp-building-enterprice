@@ -1,0 +1,75 @@
+
+.main_preCompra{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form_preCompra {
+  box-shadow: 0 0 5px #000;
+  padding: 20px;
+  border-radius: 20px;
+  width: 450px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.main_preCompra .form_preCompra .comprarButton {
+  width: 100%;
+  font-size: 30px;
+  color: white;
+  background: #0099ff;
+  border: none;
+  outline: none;
+  text-shadow: 0 0 5px #000;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.main_preCompra .form_preCompra .comprarButton:hover {
+  box-shadow: 0 0 5px #0099ff;
+}
+.main_preCompra .form_preCompra .inputdiv {
+  border-radius: 10px;
+  margin: 10px;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 0 5px #000;
+  background: white;
+  position: relative;
+}
+.main_preCompra .form_preCompra .inputdiv input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  font-size: 20px;
+  padding: 5px;
+}
+.main_preCompra .form_preCompra .inputdiv label {
+  position: absolute;
+  left: 5px;
+  color: rgb(56, 56, 56);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  transition: 0.1s;
+}
+.main_preCompra .form_preCompra .inputdiv label.onText {
+  top: 0;
+  background: #ffffff;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  font-size: 10px;
+  color: #000;
+  padding: 2px;
+}

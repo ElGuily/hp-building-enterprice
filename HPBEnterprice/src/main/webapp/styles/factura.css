@@ -1,0 +1,50 @@
+.main_final{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.factura{
+    box-shadow: 0 0 5px #000;
+    padding: 20px;
+    border-radius: 20px;
+    width: 450px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+h1{
+    margin-bottom: 50px;
+    font-size: 40px;
+}
+
+.producto{
+    margin-top: 20px;
+}
+
+.precio, .dir{
+    margin-top: 30px;
+}
+
+.seguir{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 150px;
+    height: 50px;
+    margin-top: 50px;
+    font-size: 15px;
+    border-radius: 20px;
+    background: #53bcfe;
+    cursor: pointer;
+}
+
+.seguir:hover{
+    background: #348ec7;
+}

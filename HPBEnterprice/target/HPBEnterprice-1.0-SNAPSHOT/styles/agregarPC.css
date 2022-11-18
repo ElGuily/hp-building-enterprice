@@ -1,0 +1,89 @@
+.main_agregarPC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.main_agregarPC .form_agregarPC {
+  box-shadow: 0 0 5px #000;
+  padding: 20px;
+  border-radius: 20px;
+  width: 450px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+}
+.main_agregarPC .form_agregarPC .select-model, .main_agregarPC .form_agregarPC .categoria-pc {
+  box-shadow: 0 0 5px #000;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 20px;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.main_agregarPC .form_agregarPC .option-oficina, .main_agregarPC .form_agregarPC .option-gamer {
+  display: grid;
+  grid-template-columns: 1fr 99fr;
+  gap: 5px;
+}
+.main_agregarPC .form_agregarPC .hidden {
+  display: none;
+}
+.main_agregarPC .form_agregarPC .nextbutton {
+  width: 100%;
+  font-size: 30px;
+  color: white;
+  background: #0099ff;
+  border: none;
+  outline: none;
+  text-shadow: 0 0 5px #000;
+  margin-top: 5px;
+}
+.main_agregarPC .form_agregarPC .nextbutton:hover {
+  box-shadow: 0 0 5px #0099ff;
+}
+.main_agregarPC .form_agregarPC .inputdiv {
+  border-radius: 10px;
+  margin: 10px;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 0 5px #000;
+  background: white;
+  position: relative;
+}
+.main_agregarPC .form_agregarPC .inputdiv input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  font-size: 20px;
+  padding: 5px;
+}
+.main_agregarPC .form_agregarPC .inputdiv label {
+  position: absolute;
+  left: 5px;
+  color: rgb(56, 56, 56);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  transition: 0.1s;
+}
+.main_agregarPC .form_agregarPC .inputdiv label.onText {
+  top: 0;
+  background: #ffffff;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  font-size: 10px;
+  color: #000;
+  padding: 2px;
+}

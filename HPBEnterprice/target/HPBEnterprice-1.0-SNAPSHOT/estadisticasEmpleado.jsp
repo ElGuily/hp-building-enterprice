@@ -20,51 +20,56 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="styles/estadisticas.css"/>
     </head>
     <body>
         <%@include file="components/nav-bar.jsp" %>
         
         <main class="main_signup">
-            <div>
-                
-                <p>${empleadoDatos.nombre}</p>
-                <p>${empleadoDatos.DNI}</p>
-                <p>${empleadoDatos.email}</p>
-                <p>${empleadoDatos.facturado}</p>
-              
+            <div class="employee-stats">
+              <img src="images/profile.svg" alt="" class="img-profile" />
+              <div class="stats">
+                <p class="name-profile">Nombre:${empleadoDatos.nombre}</p>
+                <p class="dni-profile">DNI:${empleadoDatos.DNI}</p>
+                <p class="email-profile">Email:${empleadoDatos.email}</p>
+                <p class="facturado-profile">Facturado:${empleadoDatos.facturado}</p>
+              </div>
             </div>
-                <c:choose>
-                    <c:when test="${admin}">
-                        <%
-                            
-                            GestorBD gbd = new GestorBD();
-                            HttpSession s = request.getSession();
-                            int cant = 0;
-                            String nom = "";
-                            ResultSet masVendida = gbd.PCmasVendida();
-                            JOptionPane.showMessageDialog(null, masVendida);
-                            try {
-                                while(masVendida.next()){
-                                    cant = masVendida.getInt("cantidad");
-                                    nom = masVendida.getString("nombre");
-                                    JOptionPane.showMessageDialog(null, cant + nom);
-                                }
-                            } catch (SQLException ex) {
-                                Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            out.print("<div");
-                            out.print("<h1> Producto mas vendido: " + nom + "</h1>");
-                            out.print("<h2> Cantidad:" + cant + "</h2>");
-                            out.print("</div");
-                            double totalCiber = gbd.calcularCiberMonday();
-                            out.print("<div>");
-                            out.print("<h1> Recaudado en el ciberMonday: "+ totalCiber + "</h1>");
-                            out.print("</div>");
-                        %>
-                        <c:out value="La comision a pagar total es: ${comision}"></c:out>
-                    </c:when>
-                </c:choose>
-            
-        </main>
+      
+          <c:choose>
+            <c:when test="${admin}">
+                <%
+
+                    GestorBD gbd = new GestorBD();
+
+                    int cant = 0;
+                    String nom = "";
+                    ResultSet masVendida = gbd.PCmasVendida();
+                    try {
+                        while(masVendida.next()){
+                            cant = masVendida.getInt("cantidad");
+                            nom = masVendida.getString("nombre");
+                        
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(compraFinal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    out.print("<div class='admin-view'>");
+                    out.print("<h1 class='masVendido'> Producto mas vendido: " + nom + "</h1>");
+                    out.print("<h2 class='cantidadTotal'> Cantidad:" + cant + "</h2>");
+
+                    double comisiones = gbd.obtenerTotalComisionEnVenta();
+
+                    out.print("<h1 class='totalComisiones'> Total de comisiones: "+ comisiones + "</h1>");
+
+                    double totalCiber = gbd.calcularCiberMonday();
+
+                    out.print("<h1 class='totalCiber'> Recaudado en el ciberMonday: "+ totalCiber + "</h1>");
+                    out.print("</div>");
+                %>
+                
+            </c:when>
+        </c:choose>
+          </main>
     </body>
 </html>

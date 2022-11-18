@@ -1,4 +1,3 @@
-
 /* -----------GLOBALS-----------*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
@@ -45,7 +44,7 @@ html{
     height: 100%;
     padding-top: 10vh;
     gap: 20px;
-    
+
 }
 .section{
     display: grid;
@@ -57,7 +56,7 @@ html{
     padding-top: 20px;
     padding-bottom: 20px;
     gap:20px;
-    
+
     overflow-y: scroll;
 }
 .aside{
@@ -69,7 +68,7 @@ html{
     display: grid;
     grid-template-columns: 10fr 95fr;
     align-items: center;
-    
+
 }
 .aside__pctype p{
     grid-column: 1/3;
@@ -86,7 +85,7 @@ html{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    
+
     color: #0099ff;
     border: 1px solid black;
     font-size: 25px;
@@ -103,13 +102,13 @@ html{
     .section{
         grid-template-columns: 1fr;
     }
-    
+
 }
 
 @media (max-width:767px) {
     .main{
         grid-template-columns: 1fr;
-        
+
     }
     .section{
     }
@@ -118,32 +117,32 @@ html{
 /* -----------Card Type-----------*/
 
 .box {
-  width: 30rem;
-  border: 1px solid #fff;
-  height: 420px;
-  margin: 15px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 30rem;
+    border: 1px solid #fff;
+    height: 420px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .img {
-  filter: brightness(.7);
-  max-width: 30rem;
-  height: 30rem;
-  object-position: center;
-  
+    filter: brightness(.7);
+    max-width: 30rem;
+    height: 30rem;
+    object-position: center;
+
 }
 
 .box:hover .img{
@@ -158,27 +157,27 @@ html{
 }
 
 .span {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  width: 100%;
-  height: 100%;
-  font-family: "Montserrat";
-  color: #fff;
-  text-shadow: 0 0 5px #fff;
-  text-decoration: none; 
-  filter: brightness(.7);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    width: 100%;
+    height: 100%;
+    font-family: "Montserrat";
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+    text-decoration: none;
+    filter: brightness(.7);
 }
 
 @media (max-width:1100px) {
-  .box{
-    width: 22rem;
-  }
-  .img{
-    width: 22rem;
-  }
+    .box{
+        width: 22rem;
+    }
+    .img{
+        width: 22rem;
+    }
 }
 
 /* -----------Pc card-----------*/
@@ -267,40 +266,35 @@ html{
     text-shadow: 0 0 5px #000;
 }
 
-.li_admin{
-    font-size: 20px;
-    color: #000;
-   
+li.li_admin{
+    margin-left:5px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+}
+.li_admin button, .li_admin a{
+    color: #fff;
+    text-decoration: none;
+    background: #348ec7;
+    border:none;
+    text-align: center;
+    padding: 2px;
+    width: max-content;
+    font-size:20px;
+    padding: 10px;
+    margin: 5px;
+    border-radius:10px;
+    text-shadow: 0 0 5px #000;
+    transition: transform ease .3s;
+}
+.li_admin button:hover, .li_admin a:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 5px #348ec7;
 }
 
-
-.li_search_input{
-    width: 100%;
-    border: none;
-    outline: none;
-    border-radius: 10px 0 0 10px;
-    padding-left: 10px;
-    font-size: 20px;
-    
-}
-.li_search_img{
-    height: 100%;
-}
-.li_search_button{
-    border: none;
-    outline: none;
-    padding: 6px;
-    background: rgb(211, 211, 211);
-    border-radius: 0 10px 10px 0;
-}
-.li_search{
-    display: flex;
-    width: 80%;
-    height: 45px;
-    background: #fff;
-    box-shadow: 0 0 5px #000;
-    border-radius: 10px;
-}
 .li_profile{
     min-width: 250px;
     display: flex;
@@ -320,128 +314,128 @@ html{
 /* -----------Home - landing page-----------*/
 
 .landing {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: space-around;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-around;
 }
 .main_img {
-  max-width: 600px;
-  transition: width 0.2s;
+    max-width: 600px;
+    transition: width 0.2s;
 }
 .main_div_h1 {
-  text-align: center;
-  font-size: 100px;
-  color: #348ec7;
-  text-shadow: 0 0 5px #ffffff, 0 0 10px #348ec7;
-  transition: font-size 0.2s;
+    text-align: center;
+    font-size: 100px;
+    color: #348ec7;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #348ec7;
+    transition: font-size 0.2s;
 }
 .main_div_h2 {
-  font-size: 70px;
-  transition: font-size 0.2s;
-  text-align: center;
+    font-size: 70px;
+    transition: font-size 0.2s;
+    text-align: center;
 }
 
 .postLanding {
-  height: 100vh;
-  background: #0099ff;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+    height: 100vh;
+    background: #0099ff;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 .postLanding__h3 {
-  font-size: 7rem;
-  text-align: center;
-  font-family: "Montserrat";
-  font-weight: 600;
-  color: #fff;
-  text-shadow: 0 0 5px #fff;
+    font-size: 7rem;
+    text-align: center;
+    font-family: "Montserrat";
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
 }
 .postLanding__cajas {
-  justify-content: center;
-  display: flex;
-  align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 1450px) {
-  .main_div_h1 {
-    font-size: 60px;
-  }
-  .main_div_h2 {
-    font-size: 40px;
-  }
+    .main_div_h1 {
+        font-size: 60px;
+    }
+    .main_div_h2 {
+        font-size: 40px;
+    }
 }
 @media (max-width: 1105px) {
-  .landing {
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  .main_div_h1 {
-    font-size: 80px;
-  }
-  .main_div_h2 {
-    font-size: 40px;
-  }
-  .main_img {
-    width: 600px;
-  }
-  .postLanding {
-    height: auto;
-  }
-  .postLanding__h3 {
-    font-size: 5rem;
-  }
+    .landing {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .main_div_h1 {
+        font-size: 80px;
+    }
+    .main_div_h2 {
+        font-size: 40px;
+    }
+    .main_img {
+        width: 600px;
+    }
+    .postLanding {
+        height: auto;
+    }
+    .postLanding__h3 {
+        font-size: 5rem;
+    }
 }
 @media (max-width: 768px) {
-  .landing {
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  .main_div_h1 {
-    font-size: 60px;
-  }
-  .main_div_h2 {
-    font-size: 40px;
-  }
-  .main_img {
-    width: 450px;
-  }
-  
-  .postLanding__cajas {
-    width: 100vw;
-    
-      flex-direction: column;
-    
-  }
+    .landing {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .main_div_h1 {
+        font-size: 60px;
+    }
+    .main_div_h2 {
+        font-size: 40px;
+    }
+    .main_img {
+        width: 450px;
+    }
 
-  .postLanding__h3 {
-    font-size: 4rem;
-  }
+    .postLanding__cajas {
+        width: 100vw;
+
+        flex-direction: column;
+
+    }
+
+    .postLanding__h3 {
+        font-size: 4rem;
+    }
 }
 @media (max-width: 500px) {
-  .landing {
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  .main_div_h1 {
-    font-size: 50px;
-  }
-  .main_div_h2 {
-    font-size: 30px;
-  }
-  .main_img {
-    min-width: 100px;
-    max-width: 320px;
-  }
+    .landing {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .main_div_h1 {
+        font-size: 50px;
+    }
+    .main_div_h2 {
+        font-size: 30px;
+    }
+    .main_img {
+        min-width: 100px;
+        max-width: 320px;
+    }
 }
 
 .main_wave {
-  position: absolute;
-  bottom: -1px;
-  right: 0;
-  left: 0;
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    left: 0;
 }
 
 /* login y signup*/
@@ -463,9 +457,9 @@ html{
     box-shadow: 0 0 1rem 1px black;
     border-radius: 20px;
     justify-content: center;
-    
-    
-       
+
+
+
 }
 
 
@@ -478,7 +472,7 @@ html{
     color: white;
     font-size: 20px;
     cursor:pointer;
-    
+
 }
 
 .logout-button:hover{

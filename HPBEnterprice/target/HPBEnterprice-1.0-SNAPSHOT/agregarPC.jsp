@@ -11,21 +11,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles.css">
         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-        <title>JSP Page</title>
+        <title>agregarPC - HPBE</title>
+        <link rel="stylesheet" href="styles/agregarPC.css"/>
     </head>
     <body>
         <%@include file="components/nav-bar.jsp" %>
         
-        <main class="main_signup">
-
-            <form action="agregarPC" method="POST" class="form_signup">
-               
+        <main class="main_agregarPC">
+            
+            <form action="agregarPC" method="POST" class="form_agregarPC">
+                <h1>Agregar Pc</h1>
+                <div class="inputdiv">
+                    
+                    <input type="text" name="nombre-pc" id="nombre-pc">
+                    <label for="nombre-pc">Nombre</label>
+                </div>             
                 
-                <label for="nombre-pc">Nombre PC: </label>
-                <input type="text" name="nombre-pc">
-                <label for="modelo-pc">Modelo PC: </label>               
-                <select id="modelo_pc" name="modelo-pc">                 
+                <div class="inputdiv">
+                    <input type="number" name="precio-pc" id="precio-pc">
+                    <label for="precio-pc">Precio</label>
+                    
+                </div>
+                
+                
+                <div class="inputdiv">
+                    
+                    <input type="number" name="importados" id="importados">
+                    <label for="importados">Cant. Comp. Importados</label>
+                </div>
+                
+                <label for="modelo-pc">Modelo</label>               
+                <select id="modelo_pc" name="modelo-pc" class="select-model">                 
                     <option value="Elite600">Elite600</option>
                     <option value="ProOne">ProOne</option>
                     <option value="Elite800">Elite800</option>
@@ -33,11 +51,8 @@
                     <option value="miniHPpro400">miniHPpro400</option>
                     <option value="HP2004">HP2004</option>
                 </select>
-
-                <label for="precio-pc">Precio: </label>
-                <input type="number" name="precio-pc">
-
-                <select id="categoria-select" name="categoria-pc">
+                <label for="categoria-select">Categoria</label>
+                <select id="categoria-select" name="categoria-pc" class="categoria-pc">
                     <option value="1">Gamer</option>
                     <option value="2">Diseño</option>
                     <option value="3">Oficina</option>
@@ -51,13 +66,10 @@
                     <label for="rgb">Rgb</label>
                     <input type="checkbox" name="refri_opt" id="refrigeracionliquida">
                     <label for="refrigeracionliquida">Refrigeracion Liquida</label>
-
+                    
                 </div>
-               
-                <label for="importados">Comp. Importados: </label>
-                <input type="number" name="importados">
                 
-                <input type="submit" value="Next">
+                <input type="submit" value="Siguiente" class="nextbutton">
 
             </form>          
         </main>
@@ -78,6 +90,19 @@
                 $(".option-oficina").removeClass("hidden")
             }
         })
+
+        $(".inputdiv").map((e) => {
+      let input = $(".inputdiv")[e].children[0];
+      let label = $(".inputdiv")[e].children[1];
+      $(input).on("focus", () => {
+        label.classList.add("onText");
+      });
+      $(input).on("blur", () => {
+        if ($(input).val() == "") {
+          label.classList.remove("onText");
+        }
+      });
+    });
     </script>
      
 </html>

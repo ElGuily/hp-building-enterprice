@@ -1,0 +1,44 @@
+.main_stock {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, 300px);
+  grid-auto-rows: 200px;
+  align-items: center;
+  margin-top: 100px;
+  margin-left: 50px;
+  padding-top: 10vh;
+  height: 100vh;
+  gap: 20px;
+}
+.main_stock .pc_stock {
+  box-shadow: 0 0 5px #000;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+}
+.main_stock .pc_stock .nombre, .main_stock .pc_stock .modelo, .main_stock .pc_stock .precio {
+  font-size: 20px;
+}
+.main_stock .pc_stock .precio span {
+  color: rgb(0, 181, 0);
+}
+.main_stock .pc_stock .buttons {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.main_stock .pc_stock .buttons form button {
+  font-size: 20px;
+  padding: 5px;
+  width: 120px;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: var(--bg);
+}
+.main_stock .pc_stock .buttons form button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--bg);
+}

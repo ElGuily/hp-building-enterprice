@@ -42,7 +42,7 @@ public class agregarPC extends HttpServlet{
                 int rgb_class = 0;
                 int all_class = 0;
                 int refri_class= 0;
-                double comision = 0;
+                
                 
                 
                 try{

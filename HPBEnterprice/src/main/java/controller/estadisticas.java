@@ -58,7 +58,7 @@ public class estadisticas extends HttpServlet{
             }
             
             double totalComision = gbd.obtenerTotalComisionEnVenta();    
-           JOptionPane.showMessageDialog(null, "Comision: "+ totalComision);
+       
            req.setAttribute("comision", totalComision);
             
             req.getRequestDispatcher("estadisticasEmpleado.jsp").forward(req, res);
